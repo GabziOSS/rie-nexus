@@ -3,6 +3,7 @@
 ## Session 1: Theme System
 
 ### Theme CSS Files
+
 - [x] 7 confirmed themes created
   - [x] civicpulse.css (electric blue)
   - [x] calbayog-gov-plus.css (navy + gold)
@@ -18,6 +19,7 @@
   - [x] violet-dawn.css (vibrant purple)
 
 ### Theme Registry
+
 - [x] themes.ts created
   - [x] ThemeId union type defined
   - [x] ThemeMeta interface defined
@@ -26,6 +28,7 @@
   - [x] DEFAULT_THEME set to "civicpulse"
 
 ### Globals Configuration
+
 - [x] globals.css updated with:
   - [x] All 10 theme imports
   - [x] Google Fonts for all 8 fonts (Sora, Outfit, Crimson Pro, Inter, Space Grotesk, IBM Plex Mono, DM Sans, JetBrains Mono)
@@ -35,6 +38,7 @@
   - [x] Tabular numbers utility class
 
 ### Color Verification
+
 - [x] All colors use HSL format
 - [x] No hex/rgb colors present
 - [x] CSS variables properly scoped
@@ -44,6 +48,7 @@
 ## Session 2: Layer 2 Components
 
 ### Component Files Created
+
 - [x] theme-provider.tsx (123 lines)
   - [x] "use client" directive
   - [x] React.createContext
@@ -139,6 +144,7 @@
   - [x] Toggle + opacity slider per layer
 
 ### Library Files
+
 - [x] query-keys.ts (103 lines)
   - [x] TanStack Query key factory
   - [x] Keys for incidents, zones, metrics, charts, user
@@ -149,12 +155,14 @@
   - [x] Named + default exports
 
 ### Package Configuration
+
 - [x] package.json updated
   - [x] Added "./components" export
-  - [x] Added "./components/*" export
+  - [x] Added "./components/\*" export
   - [x] Exports field properly configured
 
 ### Code Quality Checks
+
 - [x] All components use "use client" directive
 - [x] React.memo applied to: ThemeSwitcher, StatCardFull, RiskBadge, IncidentTypeBadge
 - [x] useCallback used on all event handlers
@@ -169,28 +177,24 @@
 - [x] HSL-only colors (no hex/rgb)
 
 ### Next.js Scaffold App
+
 - [x] Created at repos/civicpulse/apps/scaffold/
   - [x] package.json (29 lines)
     - [x] Next.js 15 dependency
     - [x] TanStack Query dependency
     - [x] @rie-civicpulse/ui workspace dependency
-    - [x] Dev script: "next dev --turbopack -p 3001"
-  
+    - [x] Dev script: "next dev --turbopack -p 3000"
   - [x] next.config.ts (8 lines)
     - [x] transpilePackages for @rie-civicpulse/ui
-  
   - [x] tsconfig.json (28 lines)
     - [x] Extends root config
     - [x] Paths configured
-  
   - [x] src/app/layout.tsx (30 lines)
     - [x] Imports globals.css
     - [x] Wraps with Providers
-  
   - [x] src/app/providers.tsx (25 lines)
     - [x] QueryClientProvider
     - [x] ThemeProvider
-  
   - [x] src/app/page.tsx (148 lines)
     - [x] AppShell layout
     - [x] StatCardFull examples
@@ -207,6 +211,7 @@
 ## Session 3A: Layer 3 & 4 Components
 
 ### Chart Color Constants
+
 - [x] lib/chart-colors.ts (69 lines)
   - [x] Incident type colors (fire/flood/crime/medical/infrastructure/weather)
   - [x] Severity colors (critical/high/medium/low)
@@ -217,6 +222,7 @@
 ### Layer 3: Charts (15 components)
 
 #### Recharts-based (10)
+
 - [x] line-chart.tsx (181 lines)
   - [x] "use client" directive
   - [x] React.memo + useMemo
@@ -265,6 +271,7 @@
   - [x] Actual vs target
 
 #### Custom SVG (5)
+
 - [x] gauge-arc-chart.tsx (201 lines)
   - [x] "use client" directive
   - [x] Semicircle gauge
@@ -296,6 +303,7 @@
   - [x] Color scaling
 
 ### Charts Index
+
 - [x] charts/index.ts (64 lines)
   - [x] Re-exports all 15 chart components
   - [x] Type exports
@@ -328,27 +336,31 @@
   - [x] Previous/Next buttons
 
 ### Data Table Index
+
 - [x] data-table/index.ts (29 lines)
   - [x] Re-exports all 4 components
   - [x] Type exports
 
 ### Components Root Index
+
 - [x] components/index.ts updated
   - [x] Added charts exports
   - [x] Added data-table exports
 
 ### Package.json Final Configuration
+
 - [x] Updated exports field
   - [x] "./components/charts" export
-  - [x] "./components/charts/*" export
+  - [x] "./components/charts/\*" export
   - [x] "./components/data-table" export
-  - [x] "./components/data-table/*" export
+  - [x] "./components/data-table/\*" export
 
 ---
 
 ## Code Quality Standards
 
 ### React 19 Best Practices
+
 - [x] React.memo: Applied to all expensive components
 - [x] useCallback: Used on all event handlers
 - [x] useMemo: Used on all computed values
@@ -359,6 +371,7 @@
 - [x] TypeScript strict: All components strict-mode compliant
 
 ### Accessibility
+
 - [x] Semantic HTML: All components use proper elements
 - [x] ARIA labels: Icon-only buttons labeled
 - [x] Keyboard navigation: Tab order preserved
@@ -366,12 +379,14 @@
 - [x] Focus management: Sheets/drawers handle focus
 
 ### Code Formatting
+
 - [x] No semicolons: Prettier enforced
 - [x] 2-space indent: Consistent throughout
 - [x] Double quotes: All strings double-quoted
 - [x] HSL colors: 100% HSL usage (no hex/rgb)
 
 ### Documentation
+
 - [x] JSDoc comments: Every component documented
 - [x] TODO annotations: Future atom wiring marked
 - [x] DisplayName: DevTools friendly naming
@@ -382,6 +397,7 @@
 ## File Organization
 
 ### Component Structure
+
 - [x] One file per component (no god files)
 - [x] Props interfaces at top of file
 - [x] Sub-components extracted (if complex render)
@@ -389,6 +405,7 @@
 - [x] Export statement at bottom
 
 ### Library Organization
+
 - [x] lib/ folder: Colors, keys, themes, utils
 - [x] components/ folder: Layer 2 root components
 - [x] components/charts/ folder: All 15 chart components
@@ -396,6 +413,7 @@
 - [x] Index files: Re-exports for public API
 
 ### Monorepo Structure
+
 - [x] libs/ui: Component library
 - [x] apps/scaffold: Next.js demo app
 - [x] apps/web: Existing Vite app (untouched)
@@ -406,18 +424,21 @@
 ## Deployment Readiness
 
 ### Development
-- [x] `yarn dev:scaffold` works (port 3001)
+
+- [x] `yarn dev:scaffold` works (port 3000)
 - [x] All components import correctly
 - [x] No circular dependencies
 - [x] No console errors
 
 ### Build
+
 - [x] TypeScript compiles without errors
 - [x] Prettier formatting compliant
 - [x] ESLint config compatible
 - [x] Next.js config valid
 
 ### Package Publishing
+
 - [x] package.json exports configured
 - [x] All components publicly accessible
 - [x] Type definitions exported
@@ -428,21 +449,25 @@
 ## Known Gaps (Expected for Future Sessions)
 
 ### State Management
+
 - [ ] Jotai atoms not yet implemented (marked with TODO)
 - [ ] Atom wiring stubs only
 - [ ] Persistent atom storage not configured
 
 ### Data Integration
+
 - [ ] query-keys.ts prepared but not wired
 - [ ] Mock data generators not connected
 - [ ] React Query hooks are stubs only
 
 ### Map Features
+
 - [ ] Leaflet/Mapbox not integrated
 - [ ] Map layer rendering not implemented
 - [ ] Incident markers not connected
 
 ### Performance
+
 - [ ] Charts don't have loading states
 - [ ] No error boundaries yet
 - [ ] Lazy loading not implemented

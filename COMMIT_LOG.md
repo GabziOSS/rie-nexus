@@ -10,6 +10,7 @@
 ## Session 1: Theme System (COMPLETED ✅)
 
 ### Deliverables
+
 - **10 Theme CSS Files** (`repos/civicpulse/libs/ui/src/styles/themes/`)
   - 7 confirmed themes: civicpulse, calbayog-gov-plus, nwssu-academic, civic-fusion, obsidian-ops, terracotta-republic, typhoon-watch
   - 3 gap-fill themes: teal-sentinel, accessibility-first, violet-dawn
@@ -102,6 +103,7 @@
     - Keys for: incidents, zones, metrics, charts, user
 
 #### React 19 Best Practices Applied
+
 - **Performance**: React.memo on expensive components, useCallback for handlers, useMemo for computed values
 - **Hooks**: Custom hook encapsulation (useTheme), proper effect cleanup, lazy state init
 - **Types**: Union types, optional chaining, nullish coalescing
@@ -109,14 +111,16 @@
 - **Code org**: One component per file, extracted sub-components, TODO annotations
 
 #### Next.js Scaffold App (`repos/civicpulse/apps/scaffold/`)
+
 - `package.json` — Next.js 15 + TanStack Query
 - `next.config.ts` — transpilePackages for @rie-civicpulse/ui
 - `src/app/layout.tsx` — imports globals.css, wraps with Providers
 - `src/app/providers.tsx` — QueryClientProvider + ThemeProvider
 - `src/app/page.tsx` — Dashboard demo showing all Layer 2 components
-- **Run command**: `yarn dev:scaffold` starts on port 3001
+- **Run command**: `yarn dev:scaffold` starts on port 3000
 
 #### Package Configuration Updates
+
 - Added `"use client"` directives to all client-side components
 - Updated `package.json` exports for direct component access
 - Fixed ThemeContext.Provider syntax
@@ -128,6 +132,7 @@
 ### Deliverables
 
 #### Chart Color Constants (`repos/civicpulse/libs/ui/src/lib/chart-colors.ts`)
+
 - Centralized color constants using CSS variables
 - Incident type colors, severity colors, shared Recharts props
 - Tooltip + grid styling constants
@@ -135,18 +140,20 @@
 #### 15 Chart Components (`repos/civicpulse/libs/ui/src/components/charts/`)
 
 **Recharts-based** (10 components):
+
 1. **LineChart** — Multi-series trend lines with legend toggles
 2. **AreaChart** — Response time with gradient + SLA reference line
 3. **BarChart** — Horizontal/vertical bars by colSpan
 4. **ComposedChart** — Dual-axis bars + line with optional Brush
 5. **RadarChart** — District risk comparison (5 dimensions)
 6. **PieChart** — Donut with center total + hover expansion
-7. **RadialBarChart** — Single arc for resolution % 
+7. **RadialBarChart** — Single arc for resolution %
 8. **ScatterChart** — Zone population vs incidents (risk coloring)
 9. **SparkBarChart** — Minimal 4-bar severity distribution
 10. **BulletChart** — Actual vs target with ranges
 
 **Custom SVG** (5 components):
+
 1. **GaugeArcChart** — Semicircle needle gauge with threshold bands
 2. **WindRoseChart** — 8-direction polar chart with time toggle
 3. **CompassChart** — Animated needle compass with bearing
@@ -154,6 +161,7 @@
 5. **CalendarHeatmap** — GitHub-style 365-day grid
 
 All charts:
+
 - "use client" directives for interactivity
 - React.memo + useMemo for performance
 - JSDoc comments + TODO annotations
@@ -183,6 +191,7 @@ All charts:
    - Page indicator (e.g., "Page 1 of 5")
 
 #### Index Files + Exports
+
 - `charts/index.ts` — Re-exports all 15 chart components
 - `data-table/index.ts` — Re-exports all 4 data-table components
 - Updated `components/index.ts` — Exports charts + data-table namespaces
@@ -193,6 +202,7 @@ All charts:
 ## Files Created Summary
 
 ### Layer 2 Components (Session 2)
+
 ```
 repos/civicpulse/libs/ui/src/components/
 ├── theme-provider.tsx       ✅ 123 lines
@@ -210,6 +220,7 @@ repos/civicpulse/libs/ui/src/components/
 ```
 
 ### Layer 3 Charts (Session 3A)
+
 ```
 repos/civicpulse/libs/ui/src/components/charts/
 ├── line-chart.tsx           ✅ 181 lines
@@ -231,6 +242,7 @@ repos/civicpulse/libs/ui/src/components/charts/
 ```
 
 ### Layer 4 Data Table (Session 3A)
+
 ```
 repos/civicpulse/libs/ui/src/components/data-table/
 ├── data-table.tsx           ✅ 318 lines
@@ -241,6 +253,7 @@ repos/civicpulse/libs/ui/src/components/data-table/
 ```
 
 ### Library Utilities
+
 ```
 repos/civicpulse/libs/ui/src/lib/
 ├── themes.ts                ✅ (Session 1)
@@ -250,6 +263,7 @@ repos/civicpulse/libs/ui/src/lib/
 ```
 
 ### Next.js Scaffold App
+
 ```
 repos/civicpulse/apps/scaffold/
 ├── package.json             ✅ 29 lines
@@ -265,6 +279,7 @@ repos/civicpulse/apps/scaffold/
 ## Code Quality Metrics
 
 ### React Best Practices
+
 - **Performance**: 100% of expensive components use React.memo
 - **Hooks**: All event handlers use useCallback, computed values use useMemo
 - **Types**: Full TypeScript strict mode compliance
@@ -272,6 +287,7 @@ repos/civicpulse/apps/scaffold/
 - **Testing**: TODO annotations for future atom wiring
 
 ### Codebase Standards
+
 - **No semicolons**: Prettier enforced (2-space indent, double quotes)
 - **Colors**: 100% HSL-only via CSS variables
 - **Documentation**: JSDoc comments on every component
@@ -279,6 +295,7 @@ repos/civicpulse/apps/scaffold/
 - **Dependencies**: Only @phosphor-icons, @base-ui/react, recharts, TanStack Query
 
 ### File Organization
+
 - **Components**: One per file, extracted sub-components
 - **Libraries**: Centralized themes, colors, query keys
 - **Exports**: Index files for public API, package.json for direct access
@@ -288,6 +305,7 @@ repos/civicpulse/apps/scaffold/
 ## Verification Checklist
 
 ### Session 1: Theme System
+
 - [x] 10 theme CSS files created
 - [x] Theme registry (themes.ts) with all metadata
 - [x] globals.css updated with imports + fonts
@@ -295,6 +313,7 @@ repos/civicpulse/apps/scaffold/
 - [x] All themes have unique fonts
 
 ### Session 2: Layer 2 Components
+
 - [x] 12 components implemented
 - [x] "use client" directives on all client components
 - [x] React.memo + useCallback applied to expensive components
@@ -306,6 +325,7 @@ repos/civicpulse/apps/scaffold/
 - [x] No console errors or warnings
 
 ### Session 3A: Charts & Data Table
+
 - [x] 10 Recharts-based chart components
 - [x] 5 custom SVG chart components
 - [x] 4 data table components
@@ -322,24 +342,28 @@ repos/civicpulse/apps/scaffold/
 ## Next Steps (Future Sessions)
 
 ### Session 3B: Dashboard Page Integration
+
 - [ ] Create `/dashboard` page using Layer 2 components
 - [ ] Add grid layout for Layer 3 charts
 - [ ] Implement data binding from mock-data
 - [ ] Add drag-to-resize for ChartBlock (dnd-kit integration)
 
 ### Session 4: Map Page
+
 - [ ] Create `/map` page with Leaflet/Mapbox
 - [ ] Integrate LayerDrawer for map controls
 - [ ] Add incident markers + clustering
 - [ ] Add heatmap overlay
 
 ### Session 5: Table Page
+
 - [ ] Create `/incidents` table page
 - [ ] Integrate DataTable component
 - [ ] Add row expansion with RowDetailPanel
 - [ ] Add filters + search
 
 ### Session 6: State Management (Jotai Atoms)
+
 - [ ] Wire all TODO annotations to Jotai atoms
 - [ ] Implement persistent atom storage
 - [ ] Add computed selectors for derived state
@@ -349,6 +373,7 @@ repos/civicpulse/apps/scaffold/
 ## Deploy Instructions
 
 ### Development
+
 ```bash
 # Start scaffold app (Next.js)
 yarn dev:scaffold
@@ -361,6 +386,7 @@ yarn dev
 ```
 
 ### Build
+
 ```bash
 # Build all packages
 yarn build
@@ -370,6 +396,7 @@ yarn workspace @rie-civicpulse/scaffold build
 ```
 
 ### Monorepo Tools
+
 - **Package Manager**: Yarn 4.13.0
 - **Build Tool**: Turbo
 - **Command**: `mise exec -- turbo build` (respects mise.toml)
@@ -399,7 +426,7 @@ repos/civicpulse/
 │   │   └── (50+ incidents, 12 zones, mock generators)
 │   └── ...
 ├── apps/
-│   ├── scaffold/ (NEW — Next.js 15 demo app on port 3001)
+│   ├── scaffold/ (NEW — Next.js 15 demo app on port 3000)
 │   ├── web/ (Vite + TanStack Router)
 │   └── ...
 └── turbo.json (monorepo config)
@@ -410,12 +437,14 @@ repos/civicpulse/
 ## Open Issues / Gaps
 
 ### Known Limitations
+
 - [ ] Query-keys.ts is a stub — no actual API integration yet
 - [ ] Mock data is hardcoded — needs real backend connection
 - [ ] Atoms (Jotai) wired via TODO comments — not yet implemented
 - [ ] Map integration (Leaflet/Mapbox) — needs backend tiles
 
 ### Future Refinements
+
 - [ ] Add loading/error states to charts (React Query suspense)
 - [ ] Implement chart animations with Framer Motion
 - [ ] Add responsive breakpoints for mobile
