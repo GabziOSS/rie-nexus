@@ -1,10 +1,11 @@
-/* Google Fonts — MUST come first (before all rules) */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..700;1,9..40,100..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Outfit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:opsz,wght@14..32,100;14..32,200;14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+/* @import "@fontsource-variable/outfit"; */
 
-@source "../../components/**/*.tsx";
-@source "../../lib/**/*.ts";
+@source "../../../../apps/**/*.{ts,tsx}";
+@source "../components/**/*.tsx";
+@source "../lib/**/*.ts";
 
 /* Theme files — confirmed themes */
 @import "./themes/civicpulse.css";
@@ -19,6 +20,48 @@
 @import "./themes/teal-sentinel.css";
 @import "./themes/accessibility-first.css";
 @import "./themes/violet-dawn.css";
+
+/* @theme inline { */
+/*   --color-background: var(--background); */
+/*   --color-foreground: var(--foreground); */
+/*   --color-card: var(--card); */
+/*   --color-card-foreground: var(--card-foreground); */
+/*   --color-popover: var(--popover); */
+/*   --color-popover-foreground: var(--popover-foreground); */
+/*   --color-primary: var(--primary); */
+/*   --color-primary-foreground: var(--primary-foreground); */
+/*   --color-secondary: var(--secondary); */
+/*   --color-secondary-foreground: var(--secondary-foreground); */
+/*   --color-muted: var(--muted); */
+/*   --color-muted-foreground: var(--muted-foreground); */
+/*   --color-accent: var(--accent); */
+/*   --color-accent-foreground: var(--accent-foreground); */
+/*   --color-destructive: var(--destructive); */
+/*   --color-border: var(--border); */
+/*   --color-input: var(--input); */
+/*   --color-ring: var(--ring); */
+/*   --color-chart-1: var(--chart-1); */
+/*   --color-chart-2: var(--chart-2); */
+/*   --color-chart-3: var(--chart-3); */
+/*   --color-chart-4: var(--chart-4); */
+/*   --color-chart-5: var(--chart-5); */
+/*   --radius-sm: calc(var(--radius) * 0.6); */
+/*   --radius-md: calc(var(--radius) * 0.8); */
+/*   --radius-lg: var(--radius); */
+/*   --radius-xl: calc(var(--radius) * 1.4); */
+/*   --radius-2xl: calc(var(--radius) * 1.8); */
+/*   --radius-3xl: calc(var(--radius) * 2.2); */
+/*   --radius-4xl: calc(var(--radius) * 2.6); */
+/*   --color-sidebar: var(--sidebar); */
+/*   --color-sidebar-foreground: var(--sidebar-foreground); */
+/*   --color-sidebar-primary: var(--sidebar-primary); */
+/*   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground); */
+/*   --color-sidebar-accent: var(--sidebar-accent); */
+/*   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground); */
+/*   --color-sidebar-border: var(--sidebar-border); */
+/*   --color-sidebar-ring: var(--sidebar-ring); */
+/*   --font-sans: "Outfit Variable", sans-serif; */
+/* } */
 
 @layer base {
   * {
@@ -73,5 +116,10 @@
   /* Tabular numbers for data displays */
   .tabular {
     font-variant-numeric: tabular-nums;
+  }
+
+  /* Monospace font utility */
+  .font-mono {
+    font-family: var(--font-mono);
   }
 }

@@ -34,7 +34,7 @@ function RadialBarChartComponent({
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -81,13 +81,10 @@ function RadialBarChartComponent({
 
       {/* Center label */}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span
-          className="text-[28px] font-bold tabular-nums text-foreground"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
+        <span className="text-foreground font-mono text-[28px] font-bold tabular-nums">
           {clampedValue.toFixed(0)}%
         </span>
-        <span className="text-xs text-muted-foreground">{label}</span>
+        <span className="text-muted-foreground text-xs">{label}</span>
       </div>
     </div>
   )

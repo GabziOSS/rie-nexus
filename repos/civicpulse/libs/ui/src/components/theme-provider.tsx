@@ -13,9 +13,10 @@ import {
   useEffect,
   useMemo,
   useState,
-  type ReactNode,
 } from "react"
-import { DEFAULT_THEME, THEMES, type ThemeId } from "@rie-civicpulse/ui/lib/themes"
+import { DEFAULT_THEME, THEMES } from "@rie-civicpulse/ui/lib/themes"
+import type { ThemeId } from "@rie-civicpulse/ui/lib/themes"
+import type { ReactNode } from "react"
 
 // TODO: wire activeThemeAtom from atoms/theme.atoms.ts
 
@@ -57,7 +58,9 @@ export interface ThemeProviderProps {
 
 function ThemeProvider({ children, defaultTheme }: ThemeProviderProps) {
   // Lazy initialization to avoid hydration mismatch
-  const [theme, setThemeState] = useState<ThemeId>(() => defaultTheme ?? getStoredTheme())
+  const [theme, setThemeState] = useState<ThemeId>(
+    () => defaultTheme ?? getStoredTheme()
+  )
   const [mounted, setMounted] = useState(false)
 
   // Mark as mounted after first render
@@ -75,8 +78,8 @@ function ThemeProvider({ children, defaultTheme }: ThemeProviderProps) {
     }
 
     // Apply theme attribute
-    document.documentElement.setAttribute("data-theme", stored)
-  }, [mounted]) // eslint-disable-line react-hooks/exhaustive-deps
+    document.documentElement.setAttribute("data-theme", theme)
+  }, [mounted, theme])
 
   // Stable setter with localStorage persistence
   const setTheme = useCallback((newTheme: ThemeId) => {

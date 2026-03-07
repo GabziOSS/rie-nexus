@@ -78,7 +78,7 @@ function CompassChartComponent({ bearing, className }: CompassChartProps) {
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -188,13 +188,10 @@ function CompassChartComponent({ bearing, className }: CompassChartProps) {
 
       {/* Bearing text */}
       <div className="mt-1 text-center">
-        <span
-          className="text-lg font-bold tabular-nums text-foreground"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
+        <span className="text-foreground font-mono text-lg font-bold tabular-nums">
           {displayBearing.toFixed(0)}°
         </span>
-        <span className="ml-2 text-sm text-muted-foreground">
+        <span className="text-muted-foreground ml-2 text-sm">
           {cardinalDirection}
         </span>
       </div>

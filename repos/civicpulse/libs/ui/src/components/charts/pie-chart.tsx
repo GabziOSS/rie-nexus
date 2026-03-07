@@ -49,15 +49,7 @@ const renderActiveShape = (props: {
   percent: number
   value: number
 }) => {
-  const {
-    cx,
-    cy,
-    innerRadius,
-    outerRadius,
-    startAngle,
-    endAngle,
-    fill,
-  } = props
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill } = props
 
   return (
     <g>
@@ -109,7 +101,7 @@ function PieChartComponent({
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -121,7 +113,7 @@ function PieChartComponent({
     return (
       <div
         className={cn(
-          "flex h-full w-full items-center justify-center text-muted-foreground",
+          "text-muted-foreground flex h-full w-full items-center justify-center",
           className
         )}
       >
@@ -169,13 +161,10 @@ function PieChartComponent({
 
       {/* Center label */}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span
-          className="text-2xl font-bold tabular-nums text-foreground"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
+        <span className="text-foreground font-mono text-2xl font-bold tabular-nums">
           {total.toLocaleString()}
         </span>
-        <span className="text-xs text-muted-foreground">{centerLabel}</span>
+        <span className="text-muted-foreground text-xs">{centerLabel}</span>
       </div>
     </div>
   )

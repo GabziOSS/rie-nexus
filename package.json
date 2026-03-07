@@ -5,8 +5,8 @@
   "scripts": {
     "build": "turbo build",
     "dev_turbo": "turbo dev",
-    "dev": "cd repos/civicpulse/apps/scaffold && npm run dev",
-    "dev:scaffold": "cd repos/civicpulse/apps/scaffold && npm run dev",
+    "dev": "turbo dev",
+    "dev:scaffold": "turbo dev --filter='@rie-civicpulse/scaffold'...",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"

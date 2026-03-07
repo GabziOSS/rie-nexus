@@ -6,10 +6,15 @@
  * Accepts children for main content and slots for ThemeSwitcher.
  */
 
-import type { ReactNode } from "react"
-import { Sidebar, type SidebarProps } from "@rie-civicpulse/ui/components/sidebar"
-import { TopBar, type BreadcrumbItem, type TopBarProps } from "@rie-civicpulse/ui/components/top-bar"
+import { Sidebar } from "@rie-civicpulse/ui/components/sidebar"
+import { TopBar } from "@rie-civicpulse/ui/components/top-bar"
 import { cn } from "@rie-civicpulse/ui/lib/utils"
+import type {
+  BreadcrumbItem,
+  TopBarProps,
+} from "@rie-civicpulse/ui/components/top-bar"
+import type { SidebarProps } from "@rie-civicpulse/ui/components/sidebar"
+import type { ReactNode } from "react"
 
 // TODO: wire global layout atoms from atoms/ui.atoms.ts
 
@@ -18,7 +23,7 @@ export interface AppShellProps {
   /** Current route path — passed to Sidebar for active state */
   currentPath?: string
   /** Breadcrumb items for TopBar */
-  breadcrumbs?: BreadcrumbItem[]
+  breadcrumbs?: Array<BreadcrumbItem>
   /** Notification count for TopBar */
   notificationCount?: number
   /** City name displayed in TopBar */
@@ -52,7 +57,7 @@ function AppShell({
   ...rest
 }: AppShellProps & React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className="flex h-screen overflow-hidden bg-background" {...rest}>
+    <div className="bg-background flex h-screen overflow-hidden" {...rest}>
       {/* Sidebar */}
       <Sidebar
         currentPath={currentPath}

@@ -5,8 +5,14 @@
  * Shows breadcrumbs, city name + live clock, and user actions.
  */
 
-import { useState, useEffect, useCallback } from "react"
-import { Bell, CaretRight, SignOut, User, Gear } from "@phosphor-icons/react"
+import { useCallback, useEffect, useState } from "react"
+import {
+  BellIcon as Bell,
+  CaretRightIcon as CaretRight,
+  GearIcon as Gear,
+  SignOutIcon as SignOut,
+  UserIcon as User,
+} from "@phosphor-icons/react"
 import { cn } from "@rie-civicpulse/ui/lib/utils"
 
 // TODO: wire notificationCountAtom from atoms/ui.atoms.ts
@@ -19,7 +25,7 @@ export interface BreadcrumbItem {
 
 export interface TopBarProps {
   /** Breadcrumb trail items */
-  items?: BreadcrumbItem[]
+  items?: Array<BreadcrumbItem>
   /** Number of unread notifications */
   notificationCount?: number
   /** City name displayed in center */
@@ -103,23 +109,27 @@ function TopBar({
   }, [onSignOut])
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-card px-4">
+    <header className="border-border bg-card flex h-14 shrink-0 items-center justify-between border-b px-4">
       {/* Left: Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-1 text-sm">
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-1">
             {index > 0 && (
-              <CaretRight size={12} className="text-muted-foreground" aria-hidden="true" />
+              <CaretRight
+                size={12}
+                className="text-muted-foreground"
+                aria-hidden="true"
+              />
             )}
             {item.href ? (
               <a
                 href={item.href}
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.label}
               </a>
             ) : (
-              <span className="font-medium text-foreground" aria-current="page">
+              <span className="text-foreground font-medium" aria-current="page">
                 {item.label}
               </span>
             )}
@@ -130,9 +140,11 @@ function TopBar({
       {/* Center: City name + clock */}
       <div className="absolute left-1/2 -translate-x-1/2 text-sm">
         <span className="text-foreground">{cityName}</span>
-        <span className="mx-2 text-muted-foreground" aria-hidden="true">·</span>
+        <span className="text-muted-foreground mx-2" aria-hidden="true">
+          ·
+        </span>
         <span
-          className="font-mono text-muted-foreground tabular-nums"
+          className="text-muted-foreground font-mono tabular-nums"
           role="status"
           aria-live="polite"
           aria-label={`Current time: ${time}`}
@@ -146,13 +158,13 @@ function TopBar({
         {/* Notification bell */}
         <button
           onClick={onNotifications}
-          className="relative flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          className="text-muted-foreground hover:bg-muted hover:text-foreground relative flex size-8 items-center justify-center rounded-md transition-colors"
           aria-label={`Notifications${notificationCount > 0 ? `, ${notificationCount} unread` : ""}`}
         >
           <Bell size={18} weight="duotone" />
           {notificationCount > 0 && (
             <span
-              className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-destructive text-[10px] font-semibold text-destructive-foreground"
+              className="bg-destructive text-destructive-foreground absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full text-[10px] font-semibold"
               aria-hidden="true"
             >
               {notificationCount > 9 ? "9+" : notificationCount}
@@ -164,7 +176,7 @@ function TopBar({
         <div className="relative" data-topbar-dropdown>
           <button
             onClick={handleToggleDropdown}
-            className="flex size-8 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-primary/30"
+            className="bg-primary/20 text-primary hover:bg-primary/30 flex size-8 items-center justify-center rounded-full transition-colors"
             aria-label="User menu"
             aria-expanded={dropdownOpen}
             aria-haspopup="menu"
@@ -176,12 +188,12 @@ function TopBar({
           {dropdownOpen && (
             <div
               role="menu"
-              className="absolute right-0 top-full z-50 mt-2 w-40 rounded-lg border border-border bg-card p-1 shadow-lg"
+              className="border-border bg-card absolute top-full right-0 z-50 mt-2 w-40 rounded-lg border p-1 shadow-lg"
             >
               <button
                 role="menuitem"
                 onClick={handleProfile}
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted"
+                className="text-foreground hover:bg-muted flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
               >
                 <User size={14} />
                 Profile
@@ -189,16 +201,16 @@ function TopBar({
               <button
                 role="menuitem"
                 onClick={handleSettings}
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-foreground transition-colors hover:bg-muted"
+                className="text-foreground hover:bg-muted flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
               >
                 <Gear size={14} />
                 Settings
               </button>
-              <div className="my-1 border-t border-border" role="separator" />
+              <div className="border-border my-1 border-t" role="separator" />
               <button
                 role="menuitem"
                 onClick={handleSignOut}
-                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-destructive transition-colors hover:bg-destructive/10"
+                className="text-destructive hover:bg-destructive/10 flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
               >
                 <SignOut size={14} />
                 Sign out

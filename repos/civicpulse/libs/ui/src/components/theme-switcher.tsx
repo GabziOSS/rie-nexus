@@ -6,11 +6,11 @@
  * Uses useTheme() hook for state management.
  */
 
-import { memo, useCallback, useState, useEffect } from "react"
-import { Palette } from "@phosphor-icons/react"
-import { cn } from "@rie-civicpulse/ui/lib/utils"
+import { PaletteIcon as Palette } from "@phosphor-icons/react"
+import { memo, useCallback, useEffect, useState } from "react"
 import { useTheme } from "@rie-civicpulse/ui/components/theme-provider"
-import type { ThemeMeta, ThemeId } from "@rie-civicpulse/ui/lib/themes"
+import { cn } from "@rie-civicpulse/ui/lib/utils"
+import type { ThemeId, ThemeMeta } from "@rie-civicpulse/ui/lib/themes"
 
 // TODO: wire activeThemeAtom from atoms/theme.atoms.ts
 
@@ -22,7 +22,7 @@ export interface ThemeSwitcherProps {
 /**
  * Individual theme card — memoized to prevent re-renders.
  */
-const ThemeCard = memo(function ThemeCard({
+const ThemeCard = memo(function ThemeCardImpl({
   theme,
   isActive,
   onSelect,
@@ -39,17 +39,17 @@ const ThemeCard = memo(function ThemeCard({
     <button
       onClick={handleClick}
       className={cn(
-        "flex flex-col gap-2 rounded-md border border-border p-2 transition-all hover:scale-[1.02] hover:brightness-110",
-        isActive && "ring-2 ring-primary scale-[1.02]"
+        "border-border flex flex-col gap-2 rounded-md border p-2 transition-all hover:scale-[1.02] hover:brightness-110",
+        isActive && "ring-primary scale-[1.02] ring-2"
       )}
     >
       {/* Theme name */}
-      <span className="text-xs font-medium text-foreground">{theme.label}</span>
+      <span className="text-foreground text-xs font-medium">{theme.label}</span>
 
       {/* Color preview dots */}
       <div className="flex gap-1.5">
         <span
-          className="size-3 rounded-full border border-border/50"
+          className="border-border/50 size-3 rounded-full border"
           style={{ backgroundColor: theme.preview.background }}
           title="Background"
         />
@@ -72,7 +72,7 @@ const ThemeCard = memo(function ThemeCard({
  * ThemeSwitcher component.
  * Wrapped in React.memo for performance (renders 10 theme cards).
  */
-const ThemeSwitcher = memo(function ThemeSwitcher({
+const ThemeSwitcher = memo(function ThemeSwitcherImpl({
   collapsed = false,
 }: ThemeSwitcherProps) {
   const { theme, setTheme, themes } = useTheme()
@@ -112,7 +112,7 @@ const ThemeSwitcher = memo(function ThemeSwitcher({
       <button
         onClick={handleToggle}
         className={cn(
-          "flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+          "text-muted-foreground hover:bg-muted hover:text-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
           collapsed && "justify-center px-0 py-2"
         )}
         aria-label="Change theme"
@@ -129,11 +129,11 @@ const ThemeSwitcher = memo(function ThemeSwitcher({
           role="dialog"
           aria-label="Theme selection"
           className={cn(
-            "absolute z-50 rounded-lg border border-border bg-card p-3 shadow-lg",
+            "border-border bg-card absolute z-50 rounded-lg border p-3 shadow-lg",
             collapsed ? "bottom-0 left-full ml-2" : "bottom-full left-0 mb-2"
           )}
         >
-          <div className="mb-2 text-xs font-medium text-muted-foreground">
+          <div className="text-muted-foreground mb-2 text-xs font-medium">
             Select Theme
           </div>
           <div className="grid grid-cols-2 gap-2">

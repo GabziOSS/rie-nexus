@@ -6,9 +6,13 @@
  * Wrapped in React.memo for performance.
  */
 
-import { memo, useEffect, useRef, useState, useMemo, type ReactNode } from "react"
-import { TrendUp, TrendDown } from "@phosphor-icons/react"
+import { memo, useEffect, useMemo, useRef, useState } from "react"
+import {
+  TrendDownIcon as TrendDown,
+  TrendUpIcon as TrendUp,
+} from "@phosphor-icons/react"
 import { cn } from "@rie-civicpulse/ui/lib/utils"
+import type { ReactNode } from "react"
 
 export interface StatCardFullProps {
   title: string
@@ -19,7 +23,7 @@ export interface StatCardFullProps {
   delta?: number
   deltaLabel?: string
   /** 7 values for mini bar sparkline */
-  sparkData?: number[]
+  sparkData?: Array<number>
   icon?: ReactNode
   /** Whether up is good (incidents: false, readiness: true) */
   positiveIsGood?: boolean
@@ -28,7 +32,7 @@ export interface StatCardFullProps {
 /**
  * Delta badge sub-component.
  */
-const DeltaBadge = memo(function DeltaBadge({
+const DeltaBadge = memo(function DeltaBadgeImpl({
   delta,
   deltaLabel,
   isGood,
@@ -56,7 +60,7 @@ const DeltaBadge = memo(function DeltaBadge({
         )}
         {Math.abs(delta).toFixed(1)}%
       </span>
-      <span className="text-xs text-muted-foreground">{deltaLabel}</span>
+      <span className="text-muted-foreground text-xs">{deltaLabel}</span>
     </div>
   )
 })
@@ -64,7 +68,11 @@ const DeltaBadge = memo(function DeltaBadge({
 /**
  * Sparkline sub-component.
  */
-const Sparkline = memo(function Sparkline({ data }: { data: number[] }) {
+const Sparkline = memo(function SparklineImpl({
+  data,
+}: {
+  data: Array<number>
+}) {
   // Memoize normalized heights
   const normalizedHeights = useMemo(() => {
     const maxValue = Math.max(...data, 1)
@@ -103,7 +111,7 @@ const Sparkline = memo(function Sparkline({ data }: { data: number[] }) {
 /**
  * StatCardFull component with count-up animation.
  */
-const StatCardFull = memo(function StatCardFull({
+const StatCardFull = memo(function StatCardFullImpl({
   title,
   subtitle,
   value,
@@ -171,19 +179,19 @@ const StatCardFull = memo(function StatCardFull({
   }, [delta, positiveIsGood])
 
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4">
+    <div className="border-border bg-card flex flex-col gap-3 rounded-lg border p-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2">
           {icon && (
-            <div className="flex size-8 items-center justify-center rounded-md bg-primary/10 text-primary">
+            <div className="bg-primary/10 text-primary flex size-8 items-center justify-center rounded-md">
               {icon}
             </div>
           )}
           <div>
-            <h3 className="text-sm font-medium text-foreground">{title}</h3>
+            <h3 className="text-foreground text-sm font-medium">{title}</h3>
             {subtitle && (
-              <p className="text-xs text-muted-foreground">{subtitle}</p>
+              <p className="text-muted-foreground text-xs">{subtitle}</p>
             )}
           </div>
         </div>
@@ -191,17 +199,21 @@ const StatCardFull = memo(function StatCardFull({
 
       {/* Value */}
       <div className="flex items-baseline gap-2">
-        <span className="text-3xl font-semibold tabular-nums text-foreground">
+        <span className="text-foreground text-3xl font-semibold tabular-nums">
           {typeof displayValue === "number"
             ? displayValue.toLocaleString()
             : displayValue}
         </span>
-        {unit && <span className="text-sm text-muted-foreground">{unit}</span>}
+        {unit && <span className="text-muted-foreground text-sm">{unit}</span>}
       </div>
 
       {/* Delta badge */}
       {delta !== undefined && (
-        <DeltaBadge delta={delta} deltaLabel={deltaLabel} isGood={deltaIsGood} />
+        <DeltaBadge
+          delta={delta}
+          deltaLabel={deltaLabel}
+          isGood={deltaIsGood}
+        />
       )}
 
       {/* Sparkline */}
