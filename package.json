@@ -31,6 +31,7 @@
     "@rie-civicpulse/ui": "workspace:^",
     "@tanstack/react-query": "^5.90.21",
     "next": "^16.1.6",
-    "react": "^19.2.4"
+    "react": "^19.2.4",
+    "recharts": "^3.8.0"
   }
 }

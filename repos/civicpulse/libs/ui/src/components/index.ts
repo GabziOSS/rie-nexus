@@ -75,3 +75,13 @@ export type {
 
 export { LayerDrawer } from "./layer-drawer"
 export type { LayerDrawerProps, LayerConfig } from "./layer-drawer"
+
+// ─────────────────────────────────────────────────────────────────
+// Chart Components (Layer 3)
+// ─────────────────────────────────────────────────────────────────
+export * from "./charts"
+
+// ─────────────────────────────────────────────────────────────────
+// Data Table Components (Layer 4)
+// ─────────────────────────────────────────────────────────────────
+export * from "./data-table"

@@ -37,6 +37,10 @@
     "./lib/*": "./src/lib/*.ts",
     "./components": "./src/components/index.ts",
     "./components/*": "./src/components/*.tsx",
+    "./components/charts": "./src/components/charts/index.ts",
+    "./components/charts/*": "./src/components/charts/*.tsx",
+    "./components/data-table": "./src/components/data-table/index.ts",
+    "./components/data-table/*": "./src/components/data-table/*.tsx",
     "./hooks/*": "./src/hooks/*.ts"
   }
 }
