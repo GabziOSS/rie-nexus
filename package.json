@@ -4,18 +4,20 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
-    "dev:scaffold": "yarn workspace @rie-civicpulse/scaffold dev",
+    "dev_": "turbo dev",
+    "dev": "yarn dev:scaffold",
+    "dev:scaffold": "turbo dev @rie-civicpulse/scaffold dev",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
     "@types/node": "24.12.0",
-    "@types/react": "^19.2.14",
-    "prettier": "^3.8.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "turbo": "^2.8.14",
+    "@types/react": "19.2.14",
+    "node-gyp": "^12.2.0",
+    "prettier": "3.8.1",
+    "prettier-plugin-tailwindcss": "0.7.2",
+    "turbo": "2.8.14",
     "typescript": "5.9.3"
   },
   "workspaces": [
@@ -27,11 +29,11 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.10",
+    "@phosphor-icons/react": "2.1.10",
     "@rie-civicpulse/ui": "workspace:^",
-    "@tanstack/react-query": "^5.90.21",
-    "next": "^16.1.6",
-    "react": "^19.2.4",
-    "recharts": "^3.8.0"
+    "@tanstack/react-query": "5.90.21",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "recharts": "3.8.0"
   }
 }
