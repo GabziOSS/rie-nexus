@@ -6,17 +6,19 @@
  * Wrapped in React.memo for performance in tables/lists.
  */
 
-import { memo, useMemo, type ComponentType } from "react"
+import { memo, useMemo } from "react"
 import {
-  Flame,
-  Waves,
-  ShieldWarning,
-  HeartPulse,
-  Wrench,
-  CloudLightning,
-  type IconProps,
+  CloudLightningIcon as CloudLightning,
+  FlameIcon as Flame,
+  // HeartPulse,
+  HeartbeatIcon as HeartPulse,
+  ShieldWarningIcon as ShieldWarning,
+  WavesIcon as Waves,
+  WrenchIcon as Wrench,
 } from "@phosphor-icons/react"
 import { cn } from "@rie-civicpulse/ui/lib/utils"
+import type { ComponentType } from "react"
+import type { IconProps } from "@phosphor-icons/react"
 
 export type IncidentType =
   | "fire"
@@ -103,9 +105,7 @@ const IncidentTypeBadge = memo(function IncidentTypeBadge({
         size === "md" && "px-2.5 py-1 text-xs"
       )}
     >
-      {showIcon && (
-        <Icon size={iconSize} weight="duotone" aria-hidden="true" />
-      )}
+      {showIcon && <Icon size={iconSize} weight="duotone" aria-hidden="true" />}
       {config.label}
     </span>
   )

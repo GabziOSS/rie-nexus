@@ -34,3 +34,4 @@ npm-debug.log*
 *.pem
 .opencode/memory-working
 .opencode/memory-core
+repos/civicpulse/apps/scaffold/.next
