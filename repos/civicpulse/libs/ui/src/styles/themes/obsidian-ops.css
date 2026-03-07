@@ -1,0 +1,30 @@
+:root,
+[data-theme="obsidian-ops"] {
+  /* Near-black zinc with ice blue primary */
+  --background: 0 0% 5%;
+  --foreground: 200 10% 92%;
+  --card: 0 0% 9%;
+  --card-foreground: 200 10% 92%;
+  --card-nested: 0 0% 13%;
+  --border: 200 30% 20%;
+  --border-subtle: 200 30% 16%;
+  --primary: 198 100% 45%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 270 68% 55%;
+  --secondary-foreground: 0 0% 5%;
+  --muted: 200 30% 20%;
+  --muted-foreground: 200 10% 86%;
+  --accent: 270 68% 55%;
+  --accent-foreground: 0 0% 5%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 5%;
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 5%;
+  --warning: 198 100% 45%;
+  --warning-foreground: 0 0% 5%;
+  --ring: 198 100% 45%;
+  --radius: 0.25rem;
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Space Grotesk", sans-serif;
+}

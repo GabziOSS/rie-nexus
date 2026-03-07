@@ -1,0 +1,30 @@
+:root,
+[data-theme="teal-sentinel"] {
+  /* Cool dark teal without monospace font - environmental monitoring */
+  --background: 174 65% 9%;
+  --foreground: 174 12% 89%;
+  --card: 174 62% 13%;
+  --card-foreground: 174 12% 89%;
+  --card-nested: 174 59% 17%;
+  --border: 174 48% 25%;
+  --border-subtle: 174 48% 21%;
+  --primary: 176 100% 40%;
+  --primary-foreground: 174 12% 89%;
+  --secondary: 198 90% 50%;
+  --secondary-foreground: 174 15% 10%;
+  --muted: 174 48% 25%;
+  --muted-foreground: 174 12% 83%;
+  --accent: 48 98% 50%;
+  --accent-foreground: 174 15% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 174 15% 10%;
+  --success: 176 100% 40%;
+  --success-foreground: 174 12% 89%;
+  --warning: 48 98% 50%;
+  --warning-foreground: 174 15% 10%;
+  --ring: 176 100% 40%;
+  --radius: 0.5rem;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Inter", sans-serif;
+}

@@ -1,0 +1,30 @@
+:root,
+[data-theme="calbayog-gov-plus"] {
+  /* Deep navy with civic gold accent */
+  --background: 217 87% 9%;
+  --foreground: 217 14% 90%;
+  --card: 217 84% 13%;
+  --card-foreground: 217 14% 90%;
+  --card-nested: 217 81% 17%;
+  --border: 217 65% 24%;
+  --border-subtle: 217 65% 20%;
+  --primary: 213 100% 35%;
+  --primary-foreground: 217 14% 90%;
+  --secondary: 50 89% 42%;
+  --secondary-foreground: 217 9% 11%;
+  --muted: 217 65% 24%;
+  --muted-foreground: 217 14% 84%;
+  --accent: 50 89% 50%;
+  --accent-foreground: 217 9% 11%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 217 9% 11%;
+  --success: 142 71% 45%;
+  --success-foreground: 217 9% 11%;
+  --warning: 50 89% 50%;
+  --warning-foreground: 217 9% 11%;
+  --ring: 213 100% 35%;
+  --radius: 0.5rem;
+  --font-sans: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Outfit", sans-serif;
+}

@@ -1,0 +1,30 @@
+:root,
+[data-theme="typhoon-watch"] {
+  /* Deep storm-grey with emerald-teal primary, electric yellow accent */
+  --background: 168 45% 8%;
+  --foreground: 168 12% 90%;
+  --card: 168 42% 12%;
+  --card-foreground: 168 12% 90%;
+  --card-nested: 168 40% 16%;
+  --border: 168 35% 24%;
+  --border-subtle: 168 35% 20%;
+  --primary: 168 100% 42%;
+  --primary-foreground: 168 12% 90%;
+  --secondary: 168 100% 42%;
+  --secondary-foreground: 168 12% 90%;
+  --muted: 168 35% 24%;
+  --muted-foreground: 168 12% 84%;
+  --accent: 52 100% 48%;
+  --accent-foreground: 168 25% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 168 25% 10%;
+  --success: 168 100% 42%;
+  --success-foreground: 168 12% 90%;
+  --warning: 52 100% 48%;
+  --warning-foreground: 168 25% 10%;
+  --ring: 168 100% 42%;
+  --radius: 0.375rem;
+  --font-sans: "IBM Plex Mono", monospace;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-display: "IBM Plex Mono", monospace;
+}

@@ -1,0 +1,30 @@
+:root,
+[data-theme="civic-fusion"] {
+  /* Dark blue-grey base with navy primary and crimson secondary */
+  --background: 211 88% 8%;
+  --foreground: 211 15% 89%;
+  --card: 211 85% 12%;
+  --card-foreground: 211 15% 89%;
+  --card-nested: 211 82% 16%;
+  --border: 211 65% 23%;
+  --border-subtle: 211 65% 19%;
+  --primary: 213 95% 32%;
+  --primary-foreground: 211 15% 89%;
+  --secondary: 353 85% 35%;
+  --secondary-foreground: 211 15% 89%;
+  --muted: 211 65% 23%;
+  --muted-foreground: 211 15% 83%;
+  --accent: 48 98% 48%;
+  --accent-foreground: 211 10% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 211 10% 10%;
+  --success: 142 71% 45%;
+  --success-foreground: 211 10% 10%;
+  --warning: 353 85% 35%;
+  --warning-foreground: 211 15% 89%;
+  --ring: 213 95% 32%;
+  --radius: 0.5rem;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Inter", sans-serif;
+}

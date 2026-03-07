@@ -1,0 +1,30 @@
+:root,
+[data-theme="civicpulse"] {
+  /* Deep indigo-navy base with electric blue primary */
+  --background: 222 89% 7%;
+  --foreground: 220 13% 91%;
+  --card: 222 86% 11%;
+  --card-foreground: 220 13% 91%;
+  --card-nested: 222 83% 15%;
+  --border: 222 69% 22%;
+  --border-subtle: 222 69% 18%;
+  --primary: 204 100% 50%;
+  --primary-foreground: 222 89% 7%;
+  --secondary: 262 61% 50%;
+  --secondary-foreground: 220 13% 91%;
+  --muted: 222 69% 22%;
+  --muted-foreground: 220 13% 85%;
+  --accent: 39 100% 50%;
+  --accent-foreground: 222 89% 7%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 222 89% 7%;
+  --success: 142 71% 45%;
+  --success-foreground: 222 89% 7%;
+  --warning: 39 100% 50%;
+  --warning-foreground: 222 89% 7%;
+  --ring: 204 100% 50%;
+  --radius: 0.5rem;
+  --font-sans: "Sora", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Sora", sans-serif;
+}
