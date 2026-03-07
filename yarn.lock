@@ -2690,7 +2690,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^19.2.10":
+"@types/react-is@npm:^19":
+  version: 19.2.0
+  resolution: "@types/react-is@npm:19.2.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/ff49ac8b8d439c3377e11d2f9f491ed4f8c8ee800225a40093c7941715ca8ccbde1b3833c5435354a8e39305fd0a163019d97f033c9402bc4b46f515851d2290
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*, @types/react@npm:^19.2.10":
   version: 19.2.14
   resolution: "@types/react@npm:19.2.14"
   dependencies:
@@ -3513,11 +3522,13 @@ __metadata:
     "@types/node": "npm:^25.1.0"
     "@types/react": "npm:^19.2.10"
     "@types/react-dom": "npm:^19.2.3"
+    "@types/react-is": "npm:^19"
     "@vitejs/plugin-react": "npm:^5.1.1"
     eslint: "npm:^9.39.2"
     nitro: "npm:latest"
     react: "npm:^19.2.4"
     react-dom: "npm:^19.2.4"
+    react-is: "npm:^19.2.4"
     recharts: "npm:^3.8.0"
     tailwindcss: "npm:^4.1.18"
     typescript: "npm:^5.9.3"
@@ -7211,6 +7222,13 @@ __metadata:
   peerDependencies:
     react: ^19.2.4
   checksum: 10c0/f0c63f1794dedb154136d4d0f59af00b41907f4859571c155940296808f4b94bf9c0c20633db75b5b2112ec13d8d7dd4f9bf57362ed48782f317b11d05a44f35
+  languageName: node
+  linkType: hard
+
+"react-is@npm:^19.2.4":
+  version: 19.2.4
+  resolution: "react-is@npm:19.2.4"
+  checksum: 10c0/477a7cfc900f24194606e315fa353856a3a13487ea8eca841678817cad4daef64339ea0d1e84e58459fc75dbe0d9ba00bb0cc626db3d07e0cf31edc64cb4fa37
   languageName: node
   linkType: hard
 
