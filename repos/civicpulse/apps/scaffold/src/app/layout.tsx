@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
+    <html lang="en" data-theme="civicpulse" suppressHydrationWarning>
+      <body className="bg-background min-h-screen font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

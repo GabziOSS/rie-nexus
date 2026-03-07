@@ -1,6 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 
-import appCss from "@rie-civicpulse/ui/globals.css?url"
+import "@rie-civicpulse/ui/globals.css"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -16,19 +16,13 @@ export const Route = createRootRoute({
         title: "TanStack Start Starter",
       },
     ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
   }),
   shellComponent: RootDocument,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="civicpulse">
       <head>
         <HeadContent />
       </head>
