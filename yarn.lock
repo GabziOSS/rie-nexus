@@ -1719,7 +1719,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rie-civicpulse/mock-data@workspace:repos/civicpulse/libs/mock-data"
   dependencies:
-    eslint: "npm:^9.39.2"
+    "@types/node": "npm:24.12.0"
+    eslint: "npm:^9.39.4"
     prettier: "npm:^3.8.1"
     typescript: "npm:^5.9.3"
   languageName: unknown
@@ -1732,20 +1733,20 @@ __metadata:
     "@base-ui/react": "npm:^1.2.0"
     "@fontsource-variable/outfit": "npm:^5.2.8"
     "@phosphor-icons/react": "npm:^2.1.10"
-    "@tailwindcss/vite": "npm:^4.1.18"
-    "@tanstack/eslint-config": "npm:^0.3.0"
-    "@turbo/gen": "npm:^2.8.1"
-    "@types/node": "npm:^25.1.0"
-    "@types/react": "npm:^19.2.10"
+    "@tailwindcss/vite": "npm:^4.2.1"
+    "@tanstack/eslint-config": "npm:^0.3.4"
+    "@turbo/gen": "npm:^2.8.14"
+    "@types/node": "npm:24.12.0"
+    "@types/react": "npm:^19.2.14"
     "@types/react-dom": "npm:^19.2.3"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
-    eslint: "npm:^9.39.2"
+    eslint: "npm:^9.39.4"
     react: "npm:^19.2.4"
     react-dom: "npm:^19.2.4"
     shadcn: "npm:^4.0.0"
     tailwind-merge: "npm:^3.5.0"
-    tailwindcss: "npm:^4.1.18"
+    tailwindcss: "npm:^4.2.1"
     tw-animate-css: "npm:^1.4.0"
     typescript: "npm:^5.9.3"
     zod: "npm:^3.25.76"
@@ -2136,7 +2137,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/vite@npm:^4.1.18":
+"@tailwindcss/vite@npm:^4.2.1":
   version: 4.2.1
   resolution: "@tailwindcss/vite@npm:4.2.1"
   dependencies:
@@ -2149,7 +2150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/eslint-config@npm:^0.3.0":
+"@tanstack/eslint-config@npm:^0.3.4":
   version: 0.3.4
   resolution: "@tanstack/eslint-config@npm:0.3.4"
   dependencies:
@@ -2173,7 +2174,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-router@npm:1.166.2, @tanstack/react-router@npm:^1.132.0":
+"@tanstack/react-router@npm:1.166.2, @tanstack/react-router@npm:^1.166.2":
   version: 1.166.2
   resolution: "@tanstack/react-router@npm:1.166.2"
   dependencies:
@@ -2222,7 +2223,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-start@npm:^1.132.0":
+"@tanstack/react-start@npm:^1.166.2":
   version: 1.166.2
   resolution: "@tanstack/react-start@npm:1.166.2"
   dependencies:
@@ -2252,6 +2253,18 @@ __metadata:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/8d03641c8619c2c92b5f05ea6a0c6060fe3efcab6bc2fb0990351f083263ed78fd220df62a427728f11137cba1cc2d0ca80175893a52d62a2e7057a4396e484a
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-table@npm:^8.21.3":
+  version: 8.21.3
+  resolution: "@tanstack/react-table@npm:8.21.3"
+  dependencies:
+    "@tanstack/table-core": "npm:8.21.3"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 10c0/85d1d0fcb690ecc011f68a5a61c96f82142e31a0270dcf9cbc699a6f36715b1653fe6ff1518302a6d08b7093351fc4cabefd055a7db3cd8ac01e068956b0f944
   languageName: node
   linkType: hard
 
@@ -2286,7 +2299,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/router-plugin@npm:1.166.2, @tanstack/router-plugin@npm:^1.132.0":
+"@tanstack/router-plugin@npm:1.166.2, @tanstack/router-plugin@npm:^1.166.2":
   version: 1.166.2
   resolution: "@tanstack/router-plugin@npm:1.166.2"
   dependencies:
@@ -2424,6 +2437,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/table-core@npm:8.21.3":
+  version: 8.21.3
+  resolution: "@tanstack/table-core@npm:8.21.3"
+  checksum: 10c0/40e3560e6d55e07cc047024aa7f83bd47a9323d21920d4adabba8071fd2d21230c48460b26cedf392588f8265b9edc133abb1b0d6d0adf4dae0970032900a8c9
+  languageName: node
+  linkType: hard
+
 "@tanstack/virtual-file-routes@npm:1.161.4":
   version: 1.161.4
   resolution: "@tanstack/virtual-file-routes@npm:1.161.4"
@@ -2477,7 +2497,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turbo/gen@npm:^2.8.1":
+"@turbo/gen@npm:^2.8.14":
   version: 2.8.14
   resolution: "@turbo/gen@npm:2.8.14"
   dependencies:
@@ -2672,12 +2692,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^25.1.0":
+"@types/node@npm:*":
   version: 25.3.5
   resolution: "@types/node@npm:25.3.5"
   dependencies:
     undici-types: "npm:~7.18.0"
   checksum: 10c0/4cf0834a6f6933bf0aca6afead117ae3db3b8f02a5f7187a24f871db0fb9344e5e46573ba387bc53b7505e1e219c4c535cbe67221ced95bb5ad98573223b19d0
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:24.12.0":
+  version: 24.12.0
+  resolution: "@types/node@npm:24.12.0"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10c0/8b31c0af5b5474f13048a4e77c57f22cd4f8fe6e58c4b6fde9456b0c13f46a5bfaf5744ff88fd089581de9f0d6e99c584e022681de7acb26a58d258c654c4843
   languageName: node
   linkType: hard
 
@@ -2690,7 +2719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-is@npm:^19":
+"@types/react-is@npm:^19.2.0":
   version: 19.2.0
   resolution: "@types/react-is@npm:19.2.0"
   dependencies:
@@ -2699,7 +2728,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^19.2.10":
+"@types/react@npm:*, @types/react@npm:^19.2.14":
   version: 19.2.14
   resolution: "@types/react@npm:19.2.14"
   dependencies:
@@ -3008,7 +3037,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^5.1.1":
+"@vitejs/plugin-react@npm:^5.1.4":
   version: 5.1.4
   resolution: "@vitejs/plugin-react@npm:5.1.4"
   dependencies:
@@ -3514,25 +3543,27 @@ __metadata:
     "@phosphor-icons/react": "npm:^2.1.10"
     "@rie-civicpulse/mock-data": "workspace:*"
     "@rie-civicpulse/ui": "workspace:*"
-    "@tailwindcss/vite": "npm:^4.1.18"
-    "@tanstack/eslint-config": "npm:^0.3.0"
-    "@tanstack/react-router": "npm:^1.132.0"
-    "@tanstack/react-start": "npm:^1.132.0"
-    "@tanstack/router-plugin": "npm:^1.132.0"
-    "@types/node": "npm:^25.1.0"
-    "@types/react": "npm:^19.2.10"
+    "@tailwindcss/vite": "npm:^4.2.1"
+    "@tanstack/eslint-config": "npm:^0.3.4"
+    "@tanstack/react-router": "npm:^1.166.2"
+    "@tanstack/react-start": "npm:^1.166.2"
+    "@tanstack/react-table": "npm:^8.21.3"
+    "@tanstack/router-plugin": "npm:^1.166.2"
+    "@types/node": "npm:24.12.0"
+    "@types/react": "npm:^19.2.14"
     "@types/react-dom": "npm:^19.2.3"
-    "@types/react-is": "npm:^19"
-    "@vitejs/plugin-react": "npm:^5.1.1"
-    eslint: "npm:^9.39.2"
+    "@types/react-is": "npm:^19.2.0"
+    "@vitejs/plugin-react": "npm:^5.1.4"
+    date-fns: "npm:^4.1.0"
+    eslint: "npm:^9.39.4"
     nitro: "npm:latest"
     react: "npm:^19.2.4"
     react-dom: "npm:^19.2.4"
     react-is: "npm:^19.2.4"
     recharts: "npm:^3.8.0"
-    tailwindcss: "npm:^4.1.18"
+    tailwindcss: "npm:^4.2.1"
     typescript: "npm:^5.9.3"
-    vite: "npm:^7.2.4"
+    vite: "npm:^7.3.1"
     vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
   linkType: soft
@@ -3917,6 +3948,13 @@ __metadata:
   version: 4.0.1
   resolution: "data-uri-to-buffer@npm:4.0.1"
   checksum: 10c0/20a6b93107597530d71d4cb285acee17f66bcdfc03fd81040921a81252f19db27588d87fc8fc69e1950c55cfb0bf8ae40d0e5e21d907230813eb5d5a7f9eb45b
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10c0/b79ff32830e6b7faa009590af6ae0fb8c3fd9ffad46d930548fbb5acf473773b4712ae887e156ba91a7b3dc30591ce0f517d69fd83bd9c38650fdc03b4e0bac8
   languageName: node
   linkType: hard
 
@@ -4510,7 +4548,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.39.2":
+"eslint@npm:^9.39.4":
   version: 9.39.4
   resolution: "eslint@npm:9.39.4"
   dependencies:
@@ -7434,11 +7472,12 @@ __metadata:
   dependencies:
     "@phosphor-icons/react": "npm:^2.1.10"
     "@rie-civicpulse/ui": "workspace:^"
-    "@types/react": "npm:^19.2.10"
+    "@types/node": "npm:24.12.0"
+    "@types/react": "npm:^19.2.14"
     prettier: "npm:^3.8.1"
     prettier-plugin-tailwindcss: "npm:^0.7.2"
     react: "npm:^19.2.4"
-    turbo: "npm:^2.8.8"
+    turbo: "npm:^2.8.14"
     typescript: "npm:5.9.3"
   languageName: unknown
   linkType: soft
@@ -8068,7 +8107,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:4.2.1, tailwindcss@npm:^4.1.18":
+"tailwindcss@npm:4.2.1, tailwindcss@npm:^4.2.1":
   version: 4.2.1
   resolution: "tailwindcss@npm:4.2.1"
   checksum: 10c0/482d734b582e9da509042ff59c1d7564d99e39e238c50ae907c20fa56177a8a00c3902f6971329971bd6a1c5357026ac76a849b8f2c69c94f0f59be99530ba54
@@ -8322,7 +8361,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.8.8":
+"turbo@npm:^2.8.14":
   version: 2.8.14
   resolution: "turbo@npm:2.8.14"
   dependencies:
@@ -8442,6 +8481,13 @@ __metadata:
   bin:
     uglifyjs: bin/uglifyjs
   checksum: 10c0/83b0a90eca35f778e07cad9622b80c448b6aad457c9ff8e568afed978212b42930a95f9e1be943a1ffa4258a3340fbb899f41461131c05bb1d0a9c303aed8479
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10c0/3033e2f2b5c9f1504bdc5934646cb54e37ecaca0f9249c983f7b1fc2e87c6d18399ebb05dc7fd5419e02b2e915f734d872a65da2e3eeed1813951c427d33cc9a
   languageName: node
   linkType: hard
 
@@ -8778,7 +8824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.2.4":
+"vite@npm:^7.3.1":
   version: 7.3.1
   resolution: "vite@npm:7.3.1"
   dependencies:
