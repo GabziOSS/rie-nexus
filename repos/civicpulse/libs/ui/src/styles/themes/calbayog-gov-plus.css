@@ -1,0 +1,58 @@
+/**
+ * Calbayog Gov Plus Theme
+ * Personality: Official government identity, digital clarity.
+ * Feel: Trusted, authoritative, approachable. Deep navy civic presence.
+ * Primary: Navy blue
+ * Accent: Civic gold
+ * Font: Outfit
+ */
+
+[data-theme="calbayog-gov-plus"] {
+  /* Base */
+  --background: 220 45% 6%;
+  --foreground: 210 25% 96%;
+
+  /* Card */
+  --card: 220 42% 9%;
+  --card-foreground: 210 25% 96%;
+
+  /* Border */
+  --border: 220 32% 16%;
+
+  /* Primary - Deep navy */
+  --primary: 213 84% 47%;
+  --primary-foreground: 220 45% 6%;
+
+  /* Secondary */
+  --secondary: 220 38% 14%;
+  --secondary-foreground: 210 22% 88%;
+
+  /* Muted */
+  --muted: 220 30% 12%;
+  --muted-foreground: 218 18% 52%;
+
+  /* Accent - Civic gold */
+  --accent: 45 100% 50%;
+  --accent-foreground: 220 45% 6%;
+
+  /* Destructive */
+  --destructive: 0 68% 48%;
+  --destructive-foreground: 210 25% 98%;
+
+  /* Ring */
+  --ring: 213 84% 47%;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Typography */
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Chart colors */
+  --chart-1: 213 84% 47%;
+  --chart-2: 45 100% 50%;
+  --chart-3: 142 68% 42%;
+  --chart-4: 262 70% 60%;
+  --chart-5: 195 90% 55%;
+}

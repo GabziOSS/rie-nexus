@@ -1,0 +1,59 @@
+/**
+ * CivicPulse Theme (DEFAULT)
+ * Personality: Modern data-forward civic tech. Indigo-navy depth, amber energy.
+ * Feel: The operator who needs to act fast. Clean, functional, urgent.
+ * Primary: Indigo-navy range
+ * Accent: Amber-orange
+ * Font: Sora
+ */
+
+:root,
+[data-theme="civicpulse"] {
+  /* Base */
+  --background: 222 47% 8%;
+  --foreground: 210 20% 95%;
+
+  /* Card */
+  --card: 222 44% 11%;
+  --card-foreground: 210 20% 95%;
+
+  /* Border */
+  --border: 222 30% 18%;
+
+  /* Primary - Indigo-blue */
+  --primary: 219 95% 61%;
+  --primary-foreground: 222 47% 8%;
+
+  /* Secondary */
+  --secondary: 222 35% 16%;
+  --secondary-foreground: 210 20% 90%;
+
+  /* Muted */
+  --muted: 222 30% 14%;
+  --muted-foreground: 220 15% 55%;
+
+  /* Accent - Amber-orange energy */
+  --accent: 32 94% 49%;
+  --accent-foreground: 222 47% 8%;
+
+  /* Destructive */
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 210 20% 98%;
+
+  /* Ring */
+  --ring: 219 95% 61%;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Typography */
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Chart colors */
+  --chart-1: 219 95% 61%;
+  --chart-2: 32 94% 49%;
+  --chart-3: 142 71% 45%;
+  --chart-4: 270 75% 65%;
+  --chart-5: 199 98% 58%;
+}
