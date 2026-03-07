@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev_": "turbo dev",
-    "dev": "yarn workspace @rie-civicpulse/scaffold dev",
-    "dev:scaffold": "yarn workspace @rie-civicpulse/scaffold dev",
+    "dev_turbo": "turbo dev",
+    "dev": "cd repos/civicpulse/apps/scaffold && npm run dev",
+    "dev:scaffold": "cd repos/civicpulse/apps/scaffold && npm run dev",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
