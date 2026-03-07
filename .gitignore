@@ -33,3 +33,4 @@ npm-debug.log*
 .DS_Store
 *.pem
 .opencode/memory-working
+.opencode/memory-core

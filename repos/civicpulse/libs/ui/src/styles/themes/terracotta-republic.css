@@ -1,0 +1,58 @@
+/**
+ * Terracotta Republic Theme
+ * Personality: Warm civic boldness. Sun-bleached parchment meets governance.
+ * Feel: Modern, warm, accessible, bold. Terracotta on dark warm base.
+ * Primary: Burnt orange / terracotta
+ * Accent: Sun gold
+ * Font: DM Sans
+ */
+
+[data-theme="terracotta-republic"] {
+  /* Base */
+  --background: 25 25% 7%;
+  --foreground: 35 20% 93%;
+
+  /* Card */
+  --card: 25 22% 10%;
+  --card-foreground: 35 20% 93%;
+
+  /* Border */
+  --border: 25 18% 17%;
+
+  /* Primary - Terracotta / burnt orange */
+  --primary: 17 90% 55%;
+  --primary-foreground: 25 25% 7%;
+
+  /* Secondary */
+  --secondary: 25 16% 15%;
+  --secondary-foreground: 35 16% 85%;
+
+  /* Muted */
+  --muted: 25 14% 13%;
+  --muted-foreground: 30 12% 50%;
+
+  /* Accent - Sun gold */
+  --accent: 47 95% 60%;
+  --accent-foreground: 25 25% 7%;
+
+  /* Destructive */
+  --destructive: 0 70% 48%;
+  --destructive-foreground: 35 20% 98%;
+
+  /* Ring */
+  --ring: 17 90% 55%;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Typography */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Chart colors */
+  --chart-1: 17 90% 55%;
+  --chart-2: 47 95% 60%;
+  --chart-3: 150 65% 42%;
+  --chart-4: 280 60% 58%;
+  --chart-5: 190 80% 50%;
+}
