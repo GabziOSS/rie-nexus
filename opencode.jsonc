@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/big-pickle",
+  "autoupdate": true,
+  "instructions": ["AGENTS.md", "./repos/civicpulse/AGENTS.md"],
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "yarn *": "allow",
+      "git *": "allow",
+      "rm -rf *": "ask",
+      "*": "ask",
+    },
+    "webfetch": "allow",
+  },
+}

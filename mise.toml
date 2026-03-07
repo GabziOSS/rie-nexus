@@ -9,3 +9,6 @@ yarn = "latest"
 bun = "latest"
 node = "lts/krypton"
 "npm:ocx" = "latest"
+
+[env]
+V0_API_KEY = "v1:oSGZ008AKQPi2rEaCCa0FsY4:vcp_70QDp1Q4z6f0G1weocED45yuAbr7daxHdKoDZkMHQFAbtCUGu10qXP75"
