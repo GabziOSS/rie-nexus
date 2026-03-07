@@ -1,0 +1,11 @@
+[settings]
+lockfile = true
+experimental = true
+
+[tools]
+"npm:turbo" = "latest"
+opencode = "latest"
+yarn = "latest"
+bun = "latest"
+node = "lts/krypton"
+"npm:ocx" = "latest"

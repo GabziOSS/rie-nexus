@@ -1,0 +1,23 @@
+[[tools.bun]]
+version = "1.3.10"
+backend = "core:bun"
+
+[[tools.node]]
+version = "24.14.0"
+backend = "core:node"
+
+[[tools."npm:ocx"]]
+version = "2.0.0"
+backend = "npm:ocx"
+
+[[tools."npm:turbo"]]
+version = "2.8.14"
+backend = "npm:turbo"
+
+[[tools.opencode]]
+version = "1.2.20"
+backend = "aqua:anomalyco/opencode"
+
+[[tools.yarn]]
+version = "4.9.4"
+backend = "asdf:yarn"
