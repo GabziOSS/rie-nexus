@@ -6,7 +6,7 @@
     "build": "turbo build",
     "dev_": "turbo dev",
     "dev": "yarn dev:scaffold",
-    "dev:scaffold": "turbo dev @rie-civicpulse/scaffold dev",
+    "dev:scaffold": "turbo dev --filter=@rie-civicpulse/scaffold",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
