@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * ChartBlock — Wrapper shell for all dashboard chart components.
  * Provides header with title/actions, chart area, and optional footer.

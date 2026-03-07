@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * StatCardFull — KPI metric card for dashboard hero row.
  * Shows title, value with animated count-up, delta badge, and sparkline.

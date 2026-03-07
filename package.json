@@ -5,6 +5,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "dev:scaffold": "yarn workspace @rie-civicpulse/scaffold dev",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
@@ -28,6 +29,8 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
     "@rie-civicpulse/ui": "workspace:^",
+    "@tanstack/react-query": "^5.90.21",
+    "next": "^16.1.6",
     "react": "^19.2.4"
   }
 }

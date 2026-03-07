@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * LayerDrawer — Left-side panel for map layer controls.
  * Persistent on desktop, floating on mobile.

@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * ZoneSheet — Slide-over sheet showing zone details.
  * Contains Details, Timeline, and Log Incident tabs.

@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * TopBar — Horizontal bar across the top of the content area.
  * Shows breadcrumbs, city name + live clock, and user actions.

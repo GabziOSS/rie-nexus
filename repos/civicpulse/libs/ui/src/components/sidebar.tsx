@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * Sidebar — Collapsible navigation sidebar for CivicPulse dashboard.
  * Two states: full (240px) and icon-only (56px).

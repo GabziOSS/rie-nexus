@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * RiskBadge — Small colored badge for risk/severity levels.
  * Supports risk levels, severity levels, and incident statuses.

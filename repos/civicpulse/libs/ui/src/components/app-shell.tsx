@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * AppShell — Full-height layout wrapper for CivicPulse dashboard.
  * Composes Sidebar + TopBar + content area.

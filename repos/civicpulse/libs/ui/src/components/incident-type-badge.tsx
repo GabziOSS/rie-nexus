@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * IncidentTypeBadge — Colored badge with icon for incident type.
  * Supports 6 incident types with unique colors and Phosphor icons.

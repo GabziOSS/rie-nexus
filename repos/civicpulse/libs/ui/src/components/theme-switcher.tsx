@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * ThemeSwitcher — Palette popover for selecting from available themes.
  * Shows themes as labeled cards in a 2-column grid with color preview dots.
