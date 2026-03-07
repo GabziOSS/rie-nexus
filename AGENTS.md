@@ -1,31 +1,61 @@
-# AGENTS.md - Agent Coding Guidelines
+# Agent Guidelines for rie-nexus
 
-This document provides guidance for agentic coding agents operating in this repository.
+This is a Yarn monorepo using Turbo for build orchestration.
 
-## Project Overview
+---
 
-This is a Yarn monorepo using Turbo for build orchestration. The repository structure is:
+## Project Structure
 
 ```
 rie-nexus/
 ├── repos/
 │   └── civicpulse/
 │       ├── apps/
-│       │   └── civicpulse-web/  # TanStack Start web application
+│       │   ├── civicpulse-web/       # TanStack Start (real app)
+│       │   └── civicpulse-scaffold/  # Next.js App Router (v0 surrogate — disposable)
 │       └── libs/
-│           └── ui/              # Shared UI component library (shadcn)
-└── package.json
+│           └── ui/                   # Shared UI component library (@rie-civicpulse/ui)
+├── AGENTS.md
+├── opencode.json
+├── package.json
+└── turbo.json
 ```
+
+---
+
+## Workspace Packages
+
+| Package       | Path                                        | Name                        | Role                                           |
+| ------------- | ------------------------------------------- | --------------------------- | ---------------------------------------------- |
+| Real web app  | `repos/civicpulse/apps/civicpulse-web`      | `civicpulse-web`            | TanStack Start SPA                             |
+| Surrogate app | `repos/civicpulse/apps/civicpulse-scaffold` | `civicpulse-scaffold`       | Next.js App Router — v0 generation target only |
+| UI library    | `repos/civicpulse/libs/ui`                  | `@rie-civicpulse/ui`        | shadcn components + themes                     |
+| Mock data     | `repos/civicpulse/libs/mock-data`           | `@rie-civicpulse/mock-data` | Generated safety data (added in later chunk)   |
+
+---
+
+## Surrogate App Rules
+
+`civicpulse-scaffold` is a Next.js App Router app used exclusively as a
+v0 generation target and visual QA environment.
+
+- All real components live in `libs/ui` — not in the scaffold
+- The scaffold only imports from `@rie-civicpulse/ui`
+- Do NOT add business logic to civicpulse-scaffold
+- Do NOT import from civicpulse-scaffold into civicpulse-web
+- The scaffold is disposable — delete it when no longer needed for visual QA
+
+---
 
 ## Package Manager
 
-- **Yarn 4.13.0** (Berry) - Use `yarn` for all commands
-- Run `yarn install` after pulling changes
-- Do NOT use pnpm or npm - this is a Yarn monorepo
+- **Yarn 4** — use `yarn` for all commands
+- Never use pnpm or npm
+- Run `yarn install` after pulling changes or adding packages
+
+---
 
 ## Workspace Configuration
-
-Workspaces are defined in `package.json`:
 
 ```json
 "workspaces": [
@@ -34,9 +64,11 @@ Workspaces are defined in `package.json`:
 ]
 ```
 
+---
+
 ## Commands
 
-### Root Commands (Turbo)
+### Root (Turbo)
 
 | Command          | Description             |
 | ---------------- | ----------------------- |
@@ -46,168 +78,67 @@ Workspaces are defined in `package.json`:
 | `yarn format`    | Format all packages     |
 | `yarn typecheck` | Type-check all packages |
 
-### Individual Package Commands
-
-Run from within the package directory (e.g., `repos/civicpulse/apps/civicpulse-web/`):
+### Per-package
 
 ```bash
-# Web app
-yarn dev          # Start dev server on port 3000
-yarn build        # Build for production
-yarn lint         # Run ESLint
-yarn format       # Format with Prettier
-yarn typecheck    # Type-check with TypeScript
+# Scope to a specific package
+yarn --filter civicpulse-web dev
+yarn --filter civicpulse-scaffold dev
+yarn --filter @rie-civicpulse/ui typecheck
 
-# UI library
-yarn lint
-yarn format
-yarn typecheck
+# Install into a specific package
+yarn workspace civicpulse-web add [package]
+yarn workspace @rie-civicpulse/ui add [package]
 ```
 
-### Single Test Execution
+---
 
-There is currently **no test framework configured** in this project. Tests (Vitest/Jest) should be added if needed.
+## Branch Convention
+
+- `main` — stable, reviewed code only
+- `feat/v0-scaffold` — v0 generation output, reviewed before merging
+- Feature branches from `main` for all other work
+
+---
 
 ## Code Style
 
-### Formatting
+- **Prettier**: 2-space indent, no semicolons, double quotes, trailing commas ES5, LF
+- **ESLint**: `@tanstack/eslint-config`
+- **TypeScript**: strict mode, `verbatimModuleSyntax`, use `import { type X }`
+- **Files**: kebab-case (`my-component.tsx`)
+- **Components**: PascalCase (`MyComponent.tsx`)
+- **Hooks**: camelCase with `use` prefix (`useMyHook.ts`)
 
-- **Prettier** is used for code formatting
-- Configuration in `.prettierrc`:
-  - 2-space indentation
-  - Single quotes disabled
-  - Semicolons disabled
-  - Trailing commas in ES5 positions
-  - 80-character line width
-  - LF line endings
+---
 
-Run formatting: `yarn format` or `prettier --write "**/*.{ts,tsx}"`
-
-### Linting
-
-- **ESLint** with `@tanstack/eslint-config`
-- Configuration files: `eslint.config.ts` or `eslint.config.js` in each package
-
-Run linting: `yarn lint`
-
-### TypeScript
-
-- Strict mode enabled
-- Module resolution: `bundler`
-- Target: ES2022
-- `verbatimModuleSyntax` enabled (use `import { type X }` for types)
-
-Run typecheck: `yarn typecheck` or `tsc --noEmit`
-
-## Naming Conventions
-
-- **Files**: kebab-case (e.g., `my-component.tsx`, `utils.ts`)
-- **Components**: PascalCase (e.g., `Button.tsx`, `SelectMenu.tsx`)
-- **Hooks**: camelCase with `use` prefix (e.g., `useAuth.ts`, `useCounter.ts`)
-- **Utilities**: camelCase (e.g., `cn.ts`, `formatDate.ts`)
-- **Types/Interfaces**: PascalCase (e.g., `UserProfile`, `ApiResponse`)
-
-## Imports
-
-### Workspace Imports
-
-Use workspace protocol for internal packages:
+## Import Patterns
 
 ```tsx
-// In civicpulse-web app, import from ui lib
+// UI components
 import { Button } from "@rie-civicpulse/ui/components/button"
 import { cn } from "@rie-civicpulse/ui/lib/utils"
-import "@rie-civicpulse/ui/globals.css"
-```
 
-### Path Aliases
-
-The civicpulse-web app uses path aliases:
-
-- `@/*` maps to `./src/*`
-- `@rie-civicpulse/ui/*` maps to `../../libs/ui/src/*`
-
-### Type Imports
-
-Use explicit type imports with `import { type X }` or `import type { X }`:
-
-```tsx
+// Type imports
 import { type ComponentProps } from "react"
-import type { User } from "./types"
+import type { Incident } from "@rie-civicpulse/mock-data/types"
 ```
 
-## Error Handling
-
-- Use `try/catch` with async/await for error boundaries
-- Prefer explicit error messages
-- Consider using error boundaries in React components
-
-## Component Patterns
-
-### UI Library (shadcn)
-
-Components live in `repos/civicpulse/libs/ui/src/components/` and use:
-
-- Tailwind CSS for styling
-- `cva` (class-variance-authority) for variants
-- `cn` utility for class merging
-
-Example component structure:
-
-```tsx
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@rie-civicpulse/ui/lib/utils";
-
-const buttonVariants = cva("...", {
-  variants: {
-    variant: { ... },
-    size: { ... },
-  },
-});
-
-export interface ButtonProps extends VariantProps<typeof buttonVariants> {
-  // ...
-}
-```
-
-### TanStack Start Routes
-
-Routes are defined using file-based routing in `repos/civicpulse/apps/civicpulse-web/src/routes/`.
+---
 
 ## Tailwind CSS v4
 
-This project uses **Tailwind CSS v4** (not v3). Key differences:
-
-- Configuration is in CSS, not `tailwind.config.js`
+- CSS-first configuration — no `tailwind.config.js`
 - Use `@import "tailwindcss"` in globals.css
-- The `@tailwindcss/vite` plugin handles processing
+- `@tailwindcss/vite` or `@tailwindcss/next` handles processing
+- All color values in components via CSS variables: `hsl(var(--primary))`
+- Never hardcode hex or rgb values in components
 
-## Adding New Components
-
-To add shadcn components to the civicpulse-web app:
-
-```bash
-cd repos/civicpulse/apps/civicpulse-web
-yarn dlx shadcn@latest add button
-```
-
-This places components in `repos/civicpulse/libs/ui/src/components/`.
-
-## Git Conventions
-
-- Use conventional commit messages
-- Create feature branches from `main`
-- Run `yarn lint` and `yarn typecheck` before committing
-
-## IDE Settings
-
-VSCode settings in `.vscode/settings.json`:
-
-- Tailwind CSS experimental config points to UI library styles
+---
 
 ## Important Notes
 
-1. **No test framework** is currently configured
-2. **pnpm is NOT supported** - use Yarn 4
-3. The monorepo structure uses `repos/*/apps` and `repos/*/libs` (NOT `packages`)
-4. All workspace packages use `workspace:*` protocol for dependencies
+- No test framework configured yet
+- pnpm is NOT supported
+- All workspace packages use `workspace:*` protocol for internal deps
+- Theme switching via `data-theme` attribute on `<html>`

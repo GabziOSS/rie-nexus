@@ -1,7 +1,6 @@
 # CivicPulse — Agent Supplement
 
-This file extends the root `AGENTS.md` with context specific to the
-`repos/civicpulse` project. Read both files before working on this project.
+Extends root `AGENTS.md`. Read both files before working on this project.
 
 ---
 
@@ -10,160 +9,156 @@ This file extends the root `AGENTS.md` with context specific to the
 CivicPulse is a city safety and risk management dashboard for
 **Calbayog City, Samar, Philippines** (12.0685° N, 124.5908° E).
 
-It visualizes incident data (fire, flood, crime, medical, infrastructure,
-weather) across 12 barangay zones, with a live map, dashboard charts,
-and a data table.
+It visualizes incident data across 12 barangay zones with a live map,
+dashboard charts, and a data table. Incident types: fire, flood, crime,
+medical, infrastructure, weather.
 
 ---
 
-## Workspace Packages
+## Component Layer Model
 
-| Package   | Path                                   | Name                        | Role                       |
-| --------- | -------------------------------------- | --------------------------- | -------------------------- |
-| Web app   | `repos/civicpulse/apps/civicpulse-web` | `civicpulse-web`            | TanStack Start SPA         |
-| UI lib    | `repos/civicpulse/libs/ui`             | `@rie-civicpulse/ui`        | shadcn components + themes |
-| Mock data | `repos/civicpulse/libs/mock-data`      | `@rie-civicpulse/mock-data` | Generated safety data      |
+Build and extend strictly bottom-up. Never skip a layer.
 
-### Install into a package
-
-```bash
-# App
-yarn workspace civicpulse-web add [package]
-
-# UI lib
-yarn workspace @rie-civicpulse/ui add [package]
-
-# Mock data
-yarn workspace @rie-civicpulse/mock-data add [package]
 ```
+Layer 1 — Primitives (libs/ui/src/components/primitives/)
+  Raw shadcn components. No business logic.
+  Button, Input, Card, Sheet, Popover, Tabs, Select,
+  Badge, Separator, Tooltip, DropdownMenu, Slider
 
-### Run app dev server
+Layer 2 — Composed (libs/ui/src/components/)
+  Built from primitives. No data logic.
+  ChartBlock, StatCardFull, RiskBadge, IncidentTypeBadge,
+  StatusBadge, Sidebar, TopBar, AppShell, ThemeSwitcher,
+  ZoneSheet, LayerDrawer
 
-```bash
-yarn --filter civicpulse-web dev
+Layer 3 — Charts (libs/ui/src/components/charts/)
+  Built from ChartBlock. Consume recharts or custom SVG.
+  All 15 chart type components.
+
+Layer 4 — Data Table (libs/ui/src/components/data-table/)
+  Built from primitives + badges. TanStack Table visuals.
+
+Layer 5 — Pages (apps/civicpulse-scaffold/app/)
+  Import from libs/ui only. Assemble into views.
+  Never contain component logic — layout and composition only.
 ```
 
 ---
 
-## Route Structure
+## Surrogate App (civicpulse-scaffold)
+
+`civicpulse-scaffold` is a Next.js App Router app.
+Its only job is to render `@rie-civicpulse/ui` components for visual QA.
 
 ```
-src/routes/
-├── __root.tsx          ← root layout (AppShell)
-├── index.tsx           ← redirects to /dashboard
-├── dashboard/
-│   ├── route.tsx       ← shared tab layout (Overview | Data Table)
-│   ├── index.tsx       ← chart grid view
-│   └── table.tsx       ← data table view
-└── map/
-    └── index.tsx       ← MapLibre full-screen view
+apps/civicpulse-scaffold/
+├── package.json          name: "civicpulse-scaffold"
+├── next.config.ts        path alias → ../../libs/ui/src
+├── tsconfig.json         paths for @rie-civicpulse/ui/*
+└── app/
+    ├── layout.tsx        QueryClientProvider + ThemeProvider
+    ├── globals.css       @import "@rie-civicpulse/ui/styles/globals.css"
+    ├── page.tsx          redirect → /dashboard
+    ├── dashboard/
+    │   ├── page.tsx      Overview + Station View tabs + DnD grid
+    │   └── table/
+    │       └── page.tsx  Data Table visual
+    └── map/
+        └── page.tsx      Map stub
 ```
 
-All routes use TanStack Start file-based routing.
-Export `Route` via `createFileRoute` or `createRootRoute`.
-Never use Next.js `page.tsx` or `layout.tsx` conventions.
+Path alias config:
+
+```ts
+// next.config.ts
+import path from "path"
+const config = {
+  webpack: (config) => {
+    config.resolve.alias["@rie-civicpulse/ui"] =
+      path.resolve(__dirname, "../../libs/ui/src")
+    return config
+  },
+}
+```
+
+```json
+// tsconfig.json paths
+"@rie-civicpulse/ui": ["../../libs/ui/src"],
+"@rie-civicpulse/ui/*": ["../../libs/ui/src/*"]
+```
 
 ---
 
-## Import Paths
+## libs/ui Structure
 
-```tsx
-// UI components
-import { Button } from "@rie-civicpulse/ui/components/button"
-import { cn } from "@rie-civicpulse/ui/lib/utils"
+```
+repos/civicpulse/libs/ui/
+├── package.json           name: "@rie-civicpulse/ui"
+├── src/
+│   ├── index.ts           re-exports all components
+│   ├── styles/
+│   │   ├── globals.css    @import tailwindcss + all theme files
+│   │   └── themes/        one CSS file per theme
+│   ├── lib/
+│   │   └── utils.ts       cn() utility
+│   └── components/
+│       ├── primitives/    Layer 1
+│       ├── charts/        Layer 3
+│       ├── data-table/    Layer 4
+│       └── *.tsx          Layer 2 composed components
+```
 
-// Mock data
-import { INCIDENTS, ZONES, METRICS } from "@rie-civicpulse/mock-data"
-import type { Incident, Zone } from "@rie-civicpulse/mock-data/types"
+exports field in package.json:
 
-// App-local
-import { MyComponent } from "@/components/my-component"
+```json
+{
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
+    "./styles/*": "./src/styles/*.css",
+    "./styles/globals.css": "./src/styles/globals.css"
+  }
+}
 ```
 
 ---
 
 ## Theme System
 
-Six themes controlled by `data-theme` attribute on `<html>`.
+Controlled by `data-theme` attribute on `<html>`.
+Default: `civicpulse`.
+Persisted to `localStorage` key `civicpulse_theme`.
 
-| ID                    | Font          | Primary                 | Accent                |
-| --------------------- | ------------- | ----------------------- | --------------------- |
-| `civicpulse`          | Sora          | Blue `219 95% 61%`      | Amber `32 94% 49%`    |
-| `calbayog-gov-plus`   | Outfit        | Navy `213 84% 47%`      | Gold `45 100% 50%`    |
-| `nwssu-academic`      | Crimson Pro   | Crimson `350 67% 36%`   | Gold `42 66% 47%`     |
-| `civic-fusion`        | Inter         | Navy-Blue `213 72% 42%` | Gold `43 82% 48%`     |
-| `obsidian-ops`        | Space Grotesk | Ice Blue `199 98% 58%`  | Violet `270 75% 65%`  |
-| `terracotta-republic` | DM Sans       | Orange `17 90% 55%`     | Sun Gold `47 95% 60%` |
+### Confirmed themes
 
-Theme CSS files: `repos/civicpulse/libs/ui/src/styles/themes/`
-Default theme: `civicpulse`
+| ID                    | Font          | Feel                                            |
+| --------------------- | ------------- | ----------------------------------------------- |
+| `civicpulse`          | Sora          | Modern data-forward civic tech                  |
+| `calbayog-gov-plus`   | Outfit        | Deep navy government authority                  |
+| `nwssu-academic`      | Crimson Pro   | Crimson and gold academia                       |
+| `civic-fusion`        | Inter         | Government + academia merged                    |
+| `obsidian-ops`        | Space Grotesk | Ice-black ops precision                         |
+| `terracotta-republic` | DM Sans       | Warm terracotta civic                           |
+| `typhoon-watch`       | IBM Plex Mono | Storm-green environmental monitoring            |
+| + gap fills           | v0 choice     | Cool dark, high-contrast, violet — v0 generates |
 
-Theme is stored in `localStorage` key `civicpulse_theme`.
-Apply via `document.documentElement.setAttribute("data-theme", theme)`.
-
----
-
-## Component Locations
-
-| Component     | File                                        | Import                                         |
-| ------------- | ------------------------------------------- | ---------------------------------------------- |
-| AppShell      | `libs/ui/src/components/app-shell.tsx`      | `@rie-civicpulse/ui/components/app-shell`      |
-| Sidebar       | `libs/ui/src/components/sidebar.tsx`        | `@rie-civicpulse/ui/components/sidebar`        |
-| TopBar        | `libs/ui/src/components/top-bar.tsx`        | `@rie-civicpulse/ui/components/top-bar`        |
-| ThemeSwitcher | `libs/ui/src/components/theme-switcher.tsx` | `@rie-civicpulse/ui/components/theme-switcher` |
-| ChartBlock    | `libs/ui/src/components/chart-block.tsx`    | `@rie-civicpulse/ui/components/chart-block`    |
-| StatCardFull  | `libs/ui/src/components/stat-card-full.tsx` | `@rie-civicpulse/ui/components/stat-card-full` |
-| RiskBadge     | `libs/ui/src/components/risk-badge.tsx`     | `@rie-civicpulse/ui/components/risk-badge`     |
-| ZoneSheet     | `libs/ui/src/components/zone-sheet.tsx`     | `@rie-civicpulse/ui/components/zone-sheet`     |
-| LayerDrawer   | `libs/ui/src/components/layer-drawer.tsx`   | `@rie-civicpulse/ui/components/layer-drawer`   |
-
----
-
-## State Philosophy
-
-- Component-local state: `useState` / `useReducer`
-- Cross-tree state: `createContext` + `useContext`
-- Atom files exist in `apps/civicpulse-web/src/atoms/` for future wiring
-- Wiring points annotated with `// TODO: wire [atomName]`
-- Do NOT import or consume atoms in components yet
-
----
-
-## Data Shape Summary
-
-```typescript
-// Incident types
-type IncidentType =
-  | "fire"
-  | "flood"
-  | "crime"
-  | "medical"
-  | "infrastructure"
-  | "weather"
-type SeverityLevel = "critical" | "high" | "medium" | "low"
-type IncidentStatus = "open" | "in_progress" | "resolved"
-
-// Zone IDs: z01–z12 (Calbayog barangay clusters)
-// All coordinates: [longitude, latitude] (GeoJSON order)
-// All dates: ISO 8601 strings
-```
-
-Full types in `repos/civicpulse/libs/mock-data/src/types.ts`.
+All themes: dark mode only. All tokens in HSL format.
 
 ---
 
 ## Chart Color Conventions
 
-Never hardcode colors. Always reference CSS variables:
+Never hardcode. Always CSS variables:
 
 ```typescript
-const CHART_COLORS = {
-  fire: "hsl(var(--destructive))",
-  flood: "hsl(var(--primary))",
-  crime: "hsl(var(--accent))",
-  medical: "hsl(142 71% 45%)",
+export const CHART_COLORS = {
+  fire:           "hsl(var(--destructive))",
+  flood:          "hsl(var(--primary))",
+  crime:          "hsl(var(--accent))",
+  medical:        "hsl(142 71% 45%)",
   infrastructure: "hsl(270 75% 65%)",
-  weather: "hsl(199 98% 58%)",
+  weather:        "hsl(199 98% 58%)",
 }
 ```
 
@@ -173,42 +168,41 @@ const CHART_COLORS = {
 
 ```typescript
 const MAP_CONFIG = {
-  center: [124.5908, 12.0685] as [number, number],
-  zoom: 12,
-  minZoom: 9,
-  maxZoom: 18,
-  maxBounds: [
-    [124.2, 11.75],
-    [124.95, 12.4],
-  ],
+  center:    [124.5908, 12.0685] as [number, number],
+  zoom:      12,
+  minZoom:   9,
+  maxZoom:   18,
+  maxBounds: [[124.20, 11.75], [124.95, 12.40]],
 }
 ```
 
-Style URL from env: `import.meta.env.VITE_MAP_STYLE_URL`
+---
+
+## State Philosophy
+
+- Local UI state: `useState` / `useReducer`
+- Server/async state: TanStack Query (`useQuery` / `useMutation`)
+- Cross-tree UI state: `createContext` + `useContext`
+- Atom stubs exported from `src/atoms/` — not yet wired into components
+- Wiring points annotated: `// TODO: wire [atomName] from atoms/[file]`
 
 ---
 
-## v0 Tool Usage (opencode)
-
-Call v0 for markup-only work. Always prepend to v0 prompts:
+## Data Flow (surrogate)
 
 ```
-This component lives in the @rie-civicpulse/ui package.
-Read the repo for conventions. No semicolons. Tailwind CSS v4.
-Import from @rie-civicpulse/ui/components/*. No Next.js patterns.
-Target file: repos/civicpulse/libs/ui/src/components/[name].tsx
+Hardcoded mock arrays (lib/mock/)
+  → queryFn wrappers (lib/query/)
+    → useQuery hooks (hooks/)
+      → components
 ```
 
-Do NOT call v0 for: recharts, maplibre, tanstack-table, dnd-kit, routing.
+Components never import raw mock data directly.
+Always go through a hook.
 
 ---
 
-## Chunks Remaining
+## v0 Session Branch
 
-| Chunk                  | Status                        | Notes                                              |
-| ---------------------- | ----------------------------- | -------------------------------------------------- |
-| 2 — App Shell + Themes | v0                            | Sidebar, TopBar, AppShell, ThemeSwitcher, 6 themes |
-| 3 — Mock Data          | opencode                      | `libs/mock-data` package                           |
-| 4 — Dashboard Charts   | opencode                      | Recharts + custom SVG charts, DnD grid             |
-| 5 — Data Table         | opencode                      | TanStack Table                                     |
-| 6 — Map View           | v0 (UI) + opencode (MapLibre) | Zone sheet, layer drawer, then map logic           |
+All v0 generation work happens on `feat/v0-scaffold`.
+Review output before merging to `main`.
