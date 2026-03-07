@@ -56,7 +56,7 @@ function BarChartComponent({
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -68,7 +68,7 @@ function BarChartComponent({
     return (
       <div
         className={cn(
-          "flex h-full w-full items-center justify-center text-muted-foreground",
+          "text-muted-foreground flex h-full w-full items-center justify-center",
           className
         )}
       >
@@ -83,7 +83,7 @@ function BarChartComponent({
     if (item.type && INCIDENT_TYPE_COLORS[item.type]) {
       return INCIDENT_TYPE_COLORS[item.type]
     }
-    if (INCIDENT_TYPE_COLORS[item.name.toLowerCase()]) {
+    if (item.name && INCIDENT_TYPE_COLORS[item.name.toLowerCase()]) {
       return INCIDENT_TYPE_COLORS[item.name.toLowerCase()]
     }
     return "hsl(var(--primary))"

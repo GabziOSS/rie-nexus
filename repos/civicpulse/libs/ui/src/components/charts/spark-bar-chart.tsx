@@ -47,10 +47,7 @@ function SparkBarChartComponent({
   if (!data) {
     return (
       <div
-        className={cn(
-          "animate-pulse rounded-lg bg-muted/30",
-          className
-        )}
+        className={cn("bg-muted/30 animate-pulse rounded-lg", className)}
         style={{ height }}
       />
     )
@@ -61,6 +58,7 @@ function SparkBarChartComponent({
 
   // Get color for bar based on name
   const getBarColor = (name: string) => {
+    if (!name) return "hsl(var(--primary))"
     const key = name.toLowerCase()
     return SEVERITY_COLORS[key] ?? "hsl(var(--primary))"
   }
@@ -88,10 +86,10 @@ function SparkBarChartComponent({
       </ResponsiveContainer>
 
       {/* Labels below */}
-      <div className="flex justify-around px-1 text-[10px] text-muted-foreground">
+      <div className="text-muted-foreground flex justify-around px-1 text-[10px]">
         {chartData.map((entry) => (
           <span key={entry.name} className="capitalize">
-            {entry.name.slice(0, 4)}
+            {entry.name ? entry.name.slice(0, 4) : "—"}
           </span>
         ))}
       </div>

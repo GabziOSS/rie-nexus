@@ -1,6 +1,6 @@
-import type { GeoJSONFeatureCollection, Zone } from "../types.js"
-import { GEO_BOUNDS } from "../types.js"
-import { randFloat } from "../seed.js"
+import type { GeoJSONFeatureCollection, Zone } from "../types"
+import { GEO_BOUNDS } from "../types"
+import { randFloat } from "../seed"
 
 /**
  * Generate GeoJSON polygon for a zone

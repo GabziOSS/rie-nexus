@@ -1,5 +1,5 @@
-import type { BulletMetric } from "../types.js"
-import { randInt } from "../seed.js"
+import type { BulletMetric } from "../types"
+import { randInt } from "../seed"
 
 /**
  * Generate bullet metrics (response time vs SLA)

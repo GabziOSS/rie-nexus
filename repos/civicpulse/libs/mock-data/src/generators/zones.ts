@@ -1,6 +1,6 @@
-import type { Zone } from "../types.js"
-import { GEO_BOUNDS } from "../types.js"
-import { randFloat } from "../seed.js"
+import type { Zone } from "../types"
+import { GEO_BOUNDS } from "../types"
+import { randFloat } from "../seed"
 
 // Calbayog City barangay-inspired zone names with coordinates within bounds
 // Bounds: [[124.2, 11.75], [124.95, 12.42]]

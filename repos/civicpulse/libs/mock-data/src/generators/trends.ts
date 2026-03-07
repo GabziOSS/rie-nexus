@@ -1,5 +1,5 @@
-import type { Trend, TrendPoint } from "../types.js"
-import { seed } from "../seed.js"
+import type { Trend, TrendPoint } from "../types"
+import { seed } from "../seed"
 
 /**
  * Generate trend data points

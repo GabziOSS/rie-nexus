@@ -1,21 +1,21 @@
 // Zone generators
-export { generateZones, ZONE_DEFINITIONS } from "./generators/zones.js"
-export { generateZonesGeoJSON } from "./generators/zones.geojson.js"
+export { generateZones, ZONE_DEFINITIONS } from "./generators/zones"
+export { generateZonesGeoJSON } from "./generators/zones.geojson"
 
 // Incident generators
-export { generateIncidents } from "./generators/incidents.js"
+export { generateIncidents } from "./generators/incidents"
 
 // Metric generators
-export { generateMetrics } from "./generators/metrics.js"
-export { generateTrends } from "./generators/trends.js"
+export { generateMetrics } from "./generators/metrics"
+export { generateTrends } from "./generators/trends"
 
 // Other generators
-export { generateDistricts } from "./generators/districts.js"
-export { generateDirections } from "./generators/direction.js"
-export { generateHeatmap } from "./generators/heatmap.js"
-export { generateCalendar } from "./generators/calendar.js"
-export { generateBulletMetrics } from "./generators/bullet.js"
-export { generateUsers } from "./generators/users.js"
+export { generateDistricts } from "./generators/districts"
+export { generateDirections } from "./generators/direction"
+export { generateHeatmap } from "./generators/heatmap"
+export { generateCalendar } from "./generators/calendar"
+export { generateBulletMetrics } from "./generators/bullet"
+export { generateUsers } from "./generators/users"
 
 // Chart data generators
 export {
@@ -29,7 +29,7 @@ export {
   generateRiskVectorBearing,
   generateDensityVsPop,
   generateSeveritySnapshot,
-} from "./generators/chart-data.js"
+} from "./generators/chart-data"
 
 // Types
 export type {
@@ -47,20 +47,20 @@ export type {
   GeoJSONFeature,
   GeoJSONFeatureCollection,
   DataRegistry,
-} from "./types.js"
+} from "./types"
 
 // Pre-generate all data
-import { generateZones } from "./generators/zones.js"
-import { generateZonesGeoJSON } from "./generators/zones.geojson.js"
-import { generateIncidents } from "./generators/incidents.js"
-import { generateMetrics } from "./generators/metrics.js"
-import { generateTrends } from "./generators/trends.js"
-import { generateDistricts } from "./generators/districts.js"
-import { generateDirections } from "./generators/direction.js"
-import { generateHeatmap } from "./generators/heatmap.js"
-import { generateCalendar } from "./generators/calendar.js"
-import { generateBulletMetrics } from "./generators/bullet.js"
-import { generateUsers } from "./generators/users.js"
+import { generateZones } from "./generators/zones"
+import { generateZonesGeoJSON } from "./generators/zones.geojson"
+import { generateIncidents } from "./generators/incidents"
+import { generateMetrics } from "./generators/metrics"
+import { generateTrends } from "./generators/trends"
+import { generateDistricts } from "./generators/districts"
+import { generateDirections } from "./generators/direction"
+import { generateHeatmap } from "./generators/heatmap"
+import { generateCalendar } from "./generators/calendar"
+import { generateBulletMetrics } from "./generators/bullet"
+import { generateUsers } from "./generators/users"
 import {
   generateIncidentsTrend,
   generateIncidentDirection,
@@ -72,9 +72,9 @@ import {
   generateRiskVectorBearing,
   generateDensityVsPop,
   generateSeveritySnapshot,
-} from "./generators/chart-data.js"
+} from "./generators/chart-data"
 
-import type { DataRegistry } from "./types.js"
+import type { DataRegistry } from "./types"
 
 // Pre-generate all data at module load time
 const zones = generateZones()

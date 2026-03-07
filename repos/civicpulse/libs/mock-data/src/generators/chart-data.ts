@@ -1,4 +1,4 @@
-import { randFloat, randInt, randItem } from "../seed.js"
+import { randFloat, randInt, randItem } from "../seed"
 
 /**
  * Generate incidents trend data: 90 days of incident counts

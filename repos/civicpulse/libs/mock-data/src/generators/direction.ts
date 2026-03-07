@@ -1,4 +1,4 @@
-import type { Direction } from "../types.js"
+import type { Direction } from "../types"
 
 /**
  * Generate 8 cardinal and intercardinal directions

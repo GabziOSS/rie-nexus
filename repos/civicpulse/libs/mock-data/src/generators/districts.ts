@@ -1,4 +1,4 @@
-import type { District } from "../types.js"
+import type { District } from "../types"
 
 /**
  * Generate 6 districts

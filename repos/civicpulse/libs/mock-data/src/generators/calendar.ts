@@ -1,5 +1,5 @@
-import type { CalendarDay } from "../types.js"
-import { seed } from "../seed.js"
+import type { CalendarDay } from "../types"
+import { seed } from "../seed"
 
 /**
  * Generate 365 days of calendar data

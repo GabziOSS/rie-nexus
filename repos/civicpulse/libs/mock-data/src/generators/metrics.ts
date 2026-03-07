@@ -1,5 +1,5 @@
-import type { Metric } from "../types.js"
-import { randFloat, randItem } from "../seed.js"
+import type { Metric } from "../types"
+import { randFloat, randItem } from "../seed"
 
 /**
  * Generate KPI metrics including all dashboard indicators

@@ -1,4 +1,4 @@
-import type { Incident, Zone } from "../types.js"
+import type { Incident, Zone } from "../types"
 import {
   randItem,
   randWeighted,
@@ -6,7 +6,7 @@ import {
   randDate,
   randId,
   seed,
-} from "../seed.js"
+} from "../seed"
 
 const INCIDENT_TYPES = [
   "traffic_accident",

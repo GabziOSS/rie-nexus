@@ -1,5 +1,5 @@
-import type { HeatmapCell } from "../types.js"
-import { seed } from "../seed.js"
+import type { HeatmapCell } from "../types"
+import { seed } from "../seed"
 
 /**
  * Generate heatmap data: 7 days x 24 hours
