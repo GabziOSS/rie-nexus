@@ -5,8 +5,8 @@
   "scripts": {
     "build": "turbo build",
     "dev_": "turbo dev",
-    "dev": "yarn dev:scaffold",
-    "dev:scaffold": "turbo dev --filter=@rie-civicpulse/scaffold",
+    "dev": "yarn workspace @rie-civicpulse/scaffold dev",
+    "dev:scaffold": "yarn workspace @rie-civicpulse/scaffold dev",
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck"
