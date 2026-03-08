@@ -25,11 +25,11 @@ export interface TimelineHeatmapCell {
 }
 
 export interface TimelineHeatmapProps {
-  data?: TimelineHeatmapCell[]
+  data?: Array<TimelineHeatmapCell>
   className?: string
 }
 
-const CATEGORIES: IncidentCategory[] = [
+const CATEGORIES: Array<IncidentCategory> = [
   "fire",
   "flood",
   "crime",
@@ -81,7 +81,7 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -93,7 +93,7 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
     return (
       <div
         className={cn(
-          "flex h-full w-full items-center justify-center text-muted-foreground",
+          "text-muted-foreground flex h-full w-full items-center justify-center",
           className
         )}
       >
@@ -104,17 +104,14 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
 
   return (
     <div className={cn("h-full w-full overflow-x-auto", className)}>
-      <div
-        className="grid"
-        style={{ gridTemplateColumns: "100px 1fr" }}
-      >
+      <div className="grid" style={{ gridTemplateColumns: "100px 1fr" }}>
         {/* Category labels */}
         <div className="flex flex-col gap-0.5">
           <div className="h-5" /> {/* Spacer for date row */}
           {CATEGORIES.map((cat) => (
             <div
               key={cat}
-              className="flex h-6 items-center text-xs capitalize text-muted-foreground"
+              className="text-muted-foreground flex h-6 items-center text-xs capitalize"
             >
               {cat}
             </div>
@@ -132,8 +129,8 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
                 <div
                   key={date}
                   className={cn(
-                    "h-5 w-6 shrink-0 text-center text-[9px] text-muted-foreground",
-                    isFirstOfMonth && idx > 0 && "border-l border-border pl-1"
+                    "text-muted-foreground h-5 w-6 shrink-0 text-center text-[9px]",
+                    isFirstOfMonth && idx > 0 && "border-border border-l pl-1"
                   )}
                 >
                   {d.getDate()}
@@ -146,7 +143,7 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
           {CATEGORIES.map((cat) => (
             <div key={cat} className="flex gap-0.5">
               {dates.map((date, idx) => {
-                const key = `${date}-${cat}`
+                const key = `${idx}-${date}-${cat}`
                 const count = grid.get(key) ?? 0
                 const d = new Date(date)
                 const isFirstOfMonth = d.getDate() === 1
@@ -161,10 +158,11 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
                     key={key}
                     className={cn(
                       "aspect-square h-6 w-6 shrink-0 cursor-pointer rounded-sm transition-all",
-                      isFirstOfMonth && idx > 0 && "border-l border-border",
-                      hoveredCell?.date === date &&
-                        hoveredCell?.category === cat &&
-                        "ring-1 ring-foreground"
+                      isFirstOfMonth && idx > 0 && "border-border border-l",
+                      hoveredCell &&
+                        hoveredCell.date === date &&
+                        hoveredCell.category === cat &&
+                        "ring-foreground ring-1"
                     )}
                     style={{ backgroundColor: getCellColor(count, maxCount) }}
                     onMouseEnter={() => setHoveredCell(cellData)}
@@ -180,12 +178,12 @@ function TimelineHeatmapComponent({ data, className }: TimelineHeatmapProps) {
 
       {/* Tooltip */}
       {hoveredCell && (
-        <div className="mt-2 text-center text-xs text-muted-foreground">
+        <div className="text-muted-foreground mt-2 text-center text-xs">
           <span className="capitalize">{hoveredCell.category}</span>
           {" · "}
           <span>{hoveredCell.date}</span>
           {" · "}
-          <span className="font-medium text-foreground">
+          <span className="text-foreground font-medium">
             {hoveredCell.count} incidents
           </span>
         </div>

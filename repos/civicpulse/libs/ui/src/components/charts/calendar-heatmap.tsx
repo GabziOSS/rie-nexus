@@ -17,7 +17,7 @@ export interface CalendarHeatmapDay {
 }
 
 export interface CalendarHeatmapProps {
-  data?: CalendarHeatmapDay[]
+  data?: Array<CalendarHeatmapDay>
   className?: string
 }
 
@@ -64,9 +64,15 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
     // Adjust to start on Sunday
     startDate.setDate(startDate.getDate() - startDate.getDay())
 
-    const weekData: Array<Array<{ date: string; count: number; isPlaceholder: boolean }>> = []
+    const weekData: Array<
+      Array<{ date: string; count: number; isPlaceholder: boolean }>
+    > = []
     const monthLabels: Array<{ month: string; weekIndex: number }> = []
-    let currentWeek: Array<{ date: string; count: number; isPlaceholder: boolean }> = []
+    let currentWeek: Array<{
+      date: string
+      count: number
+      isPlaceholder: boolean
+    }> = []
     let lastMonth = -1
 
     for (let i = 0; i < 371; i++) {
@@ -102,7 +108,7 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
     return (
       <div
         className={cn(
-          "h-full w-full animate-pulse rounded-lg bg-muted/30",
+          "bg-muted/30 h-full w-full animate-pulse rounded-lg",
           className
         )}
       />
@@ -114,7 +120,7 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
     return (
       <div
         className={cn(
-          "flex h-full w-full items-center justify-center text-muted-foreground",
+          "text-muted-foreground flex h-full w-full items-center justify-center",
           className
         )}
       >
@@ -124,13 +130,18 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
   }
 
   return (
-    <div className={cn("flex h-full w-full flex-col gap-2 overflow-x-auto", className)}>
+    <div
+      className={cn(
+        "flex h-full w-full flex-col gap-2 overflow-x-auto",
+        className
+      )}
+    >
       {/* Month labels */}
       <div className="flex pl-8">
         {months.map((m, idx) => (
           <div
             key={`${m.month}-${idx}`}
-            className="text-[10px] text-muted-foreground"
+            className="text-muted-foreground text-[10px]"
             style={{
               marginLeft: idx === 0 ? `${m.weekIndex * 12}px` : undefined,
               width: `${(months[idx + 1]?.weekIndex ?? weeks.length) - m.weekIndex}rem`,
@@ -144,7 +155,7 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
       {/* Grid with day labels */}
       <div className="flex gap-1">
         {/* Day labels */}
-        <div className="flex flex-col gap-0.5 text-[9px] text-muted-foreground">
+        <div className="text-muted-foreground flex flex-col gap-0.5 text-[9px]">
           <div className="h-3" /> {/* Sun spacer */}
           <div className="h-3">Mon</div>
           <div className="h-3" /> {/* Tue spacer */}
@@ -164,18 +175,20 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
                   className={cn(
                     "h-3 w-3 rounded-sm transition-all",
                     day.isPlaceholder && "invisible",
-                    hoveredDay?.date === day.date && "ring-1 ring-foreground"
+                    hoveredDay?.date === day.date && "ring-foreground ring-1"
                   )}
                   style={{
                     backgroundColor: day.isPlaceholder
                       ? "transparent"
                       : getCellColor(day.count, maxCount),
                   }}
-                  onMouseEnter={() =>
-                    !day.isPlaceholder && setHoveredDay(day)
-                  }
+                  onMouseEnter={() => !day.isPlaceholder && setHoveredDay(day)}
                   onMouseLeave={() => setHoveredDay(null)}
-                  title={day.isPlaceholder ? undefined : `${day.date}: ${day.count} incidents`}
+                  title={
+                    day.isPlaceholder
+                      ? undefined
+                      : `${day.date}: ${day.count} incidents`
+                  }
                 />
               ))}
             </div>
@@ -184,7 +197,7 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-end gap-1 text-[9px] text-muted-foreground">
+      <div className="text-muted-foreground flex items-center justify-end gap-1 text-[9px]">
         <span>Less</span>
         {INTENSITY_LEVELS.map((level) => (
           <div
@@ -204,10 +217,10 @@ function CalendarHeatmapComponent({ data, className }: CalendarHeatmapProps) {
 
       {/* Tooltip */}
       {hoveredDay && (
-        <div className="text-center text-xs text-muted-foreground">
+        <div className="text-muted-foreground text-center text-xs">
           <span>{hoveredDay.date}</span>
           {" · "}
-          <span className="font-medium text-foreground">
+          <span className="text-foreground font-medium">
             {hoveredDay.count} incidents
           </span>
         </div>

@@ -34,7 +34,9 @@ export interface ChartBlockProps {
   isMergeTarget?: boolean
   /** Drag handle props for dnd-kit integration */
   dragHandleProps?: Record<string, unknown>
-  onResize?: (colSpan: 1 | 2 | 3, rowSpan: 1 | 2) => void
+  dragListeners?: Record<string, unknown>
+  dragAttributes?: Record<string, unknown>
+  onColSpanChange?: (colSpan: 1 | 2 | 3) => void
   onRemove?: () => void
   onExport?: () => void
   onMerge?: () => void
@@ -52,7 +54,9 @@ function ChartBlock({
   isDragging = false,
   isMergeTarget = false,
   dragHandleProps,
-  onResize,
+  dragListeners,
+  dragAttributes,
+  onColSpanChange,
   onRemove,
   onExport,
   onMerge,
@@ -82,14 +86,19 @@ function ChartBlock({
     setMenuOpen((prev) => !prev)
   }, [])
 
-  const handleResize = useCallback(
-    (newColSpan: 1 | 2 | 3, newRowSpan: 1 | 2) => {
-      onResize?.(newColSpan, newRowSpan)
+  const handleColSpanChange = useCallback(
+    (newColSpan: 1 | 2 | 3) => {
+      onColSpanChange?.(newColSpan)
       setMenuOpen(false)
       setResizeMenuOpen(false)
     },
-    [onResize]
+    [onColSpanChange]
   )
+
+  const cycleColSpan = useCallback(() => {
+    const nextColSpan: 1 | 2 | 3 = colSpan === 1 ? 2 : colSpan === 2 ? 3 : 1
+    handleColSpanChange(nextColSpan)
+  }, [colSpan, handleColSpanChange])
 
   const handleRemove = useCallback(() => {
     onRemove?.()
@@ -109,9 +118,9 @@ function ChartBlock({
   return (
     <div
       className={cn(
-        "group relative flex flex-col rounded-lg border border-border bg-card transition-all",
+        "group border-border bg-card relative flex flex-col rounded-lg border transition-all",
         isDragging && "scale-95 opacity-50",
-        isMergeTarget && "scale-[1.02] ring-2 ring-accent",
+        isMergeTarget && "ring-accent scale-[1.02] ring-2",
         colSpan === 1 && "col-span-1",
         colSpan === 2 && "col-span-2",
         colSpan === 3 && "col-span-3",
@@ -121,22 +130,23 @@ function ChartBlock({
       {...rest}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border px-4 py-3">
+      <div className="border-border flex items-center justify-between border-b px-4 py-3">
         <div className="flex items-center gap-2">
           {/* Drag grip - visible on hover only */}
           {draggable && (
             <div
-              className="cursor-grab text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
-              {...dragHandleProps}
+              className="text-muted-foreground cursor-grab opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
+              {...dragListeners}
+              {...dragAttributes}
               aria-label="Drag to reorder"
             >
               <DotsSixVertical size={16} weight="bold" />
             </div>
           )}
           <div>
-            <h3 className="text-sm font-medium text-foreground">{title}</h3>
+            <h3 className="text-foreground text-sm font-medium">{title}</h3>
             {subtitle && (
-              <p className="text-xs text-muted-foreground">{subtitle}</p>
+              <p className="text-muted-foreground text-xs">{subtitle}</p>
             )}
           </div>
         </div>
@@ -146,7 +156,7 @@ function ChartBlock({
           {/* Expand/fullscreen button */}
           <button
             onClick={onFullscreen}
-            className="flex size-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
+            className="text-muted-foreground hover:bg-muted hover:text-foreground flex size-7 items-center justify-center rounded-md opacity-0 transition-all group-hover:opacity-100"
             aria-label="Toggle fullscreen"
           >
             <ArrowsOutSimple size={14} />
@@ -156,7 +166,7 @@ function ChartBlock({
           <div className="relative" data-chart-block-menu>
             <button
               onClick={handleToggleMenu}
-              className="flex size-7 items-center justify-center rounded-md text-muted-foreground opacity-0 transition-all hover:bg-muted hover:text-foreground group-hover:opacity-100"
+              className="text-muted-foreground hover:bg-muted hover:text-foreground flex size-7 items-center justify-center rounded-md opacity-0 transition-all group-hover:opacity-100"
               aria-label="Chart options"
               aria-expanded={menuOpen}
               aria-haspopup="menu"
@@ -168,73 +178,23 @@ function ChartBlock({
             {menuOpen && (
               <div
                 role="menu"
-                className="absolute right-0 top-full z-50 mt-1 w-36 rounded-lg border border-border bg-card p-1 shadow-lg"
+                className="border-border bg-card absolute top-full right-0 z-50 mt-1 w-36 rounded-lg border p-1 shadow-lg"
               >
-                {/* Resize submenu */}
-                <div className="relative">
-                  <button
-                    role="menuitem"
-                    onClick={() => setResizeMenuOpen(!resizeMenuOpen)}
-                    className="flex w-full items-center justify-between rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                    aria-expanded={resizeMenuOpen}
-                    aria-haspopup="menu"
-                  >
-                    <span className="flex items-center gap-2">
-                      <ArrowsOut size={14} />
-                      Resize
-                    </span>
-                  </button>
-
-                  {resizeMenuOpen && (
-                    <div
-                      role="menu"
-                      className="absolute left-full top-0 ml-1 w-28 rounded-lg border border-border bg-card p-1 shadow-lg"
-                    >
-                      <button
-                        role="menuitem"
-                        onClick={() => handleResize(1, rowSpan)}
-                        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                      >
-                        1 col
-                      </button>
-                      <button
-                        role="menuitem"
-                        onClick={() => handleResize(2, rowSpan)}
-                        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                      >
-                        2 col
-                      </button>
-                      <button
-                        role="menuitem"
-                        onClick={() => handleResize(3, rowSpan)}
-                        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                      >
-                        3 col
-                      </button>
-                      <div className="my-1 border-t border-border" role="separator" />
-                      <button
-                        role="menuitem"
-                        onClick={() => handleResize(colSpan, 1)}
-                        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                      >
-                        Short
-                      </button>
-                      <button
-                        role="menuitem"
-                        onClick={() => handleResize(colSpan, 2)}
-                        className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
-                      >
-                        Tall
-                      </button>
-                    </div>
-                  )}
-                </div>
+                {/* Resize button — cycles colSpan: 1 → 2 → 3 → 1 */}
+                <button
+                  role="menuitem"
+                  onClick={cycleColSpan}
+                  className="text-foreground hover:bg-muted flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors"
+                >
+                  <ArrowsOut size={14} />
+                  Resize ({colSpan} col)
+                </button>
 
                 {onMerge && (
                   <button
                     role="menuitem"
                     onClick={handleMerge}
-                    className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
+                    className="text-foreground hover:bg-muted flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors"
                   >
                     <ArrowsMerge size={14} />
                     Merge
@@ -245,7 +205,7 @@ function ChartBlock({
                   <button
                     role="menuitem"
                     onClick={handleExport}
-                    className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-foreground transition-colors hover:bg-muted"
+                    className="text-foreground hover:bg-muted flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors"
                   >
                     <Export size={14} />
                     Export CSV
@@ -254,11 +214,14 @@ function ChartBlock({
 
                 {onRemove && (
                   <>
-                    <div className="my-1 border-t border-border" role="separator" />
+                    <div
+                      className="border-border my-1 border-t"
+                      role="separator"
+                    />
                     <button
                       role="menuitem"
                       onClick={handleRemove}
-                      className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm text-destructive transition-colors hover:bg-destructive/10"
+                      className="text-destructive hover:bg-destructive/10 flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors"
                     >
                       <Trash size={14} />
                       Remove
@@ -276,11 +239,11 @@ function ChartBlock({
 
       {/* Footer */}
       {footer && (
-        <div className="flex items-center justify-between border-t border-border px-4 py-2">
+        <div className="border-border flex items-center justify-between border-t px-4 py-2">
           <div className="flex-1">{footer}</div>
           {/* Resize handle indicator */}
           <div
-            className="cursor-se-resize text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
+            className="text-muted-foreground cursor-se-resize opacity-0 transition-opacity group-hover:opacity-100"
             aria-hidden="true"
           >
             <svg
